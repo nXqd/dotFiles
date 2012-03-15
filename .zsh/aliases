@@ -1,0 +1,63 @@
+#!/bin/zsh
+#Alias
+#Auto open files
+alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}='feh'
+alias -s {mpg,mpeg,avi,ogm,ogv,wmv,m4v,mp4,mov,f4v,mkv}='mplayer'
+alias -s {mp3,ogg,wav,flac}='ncmpcpp'
+alias -s {html,php,com,net,org,gov}='chromium-browser'
+alias -s pdf='zathura'
+alias -s chm='xchm'
+alias -s {rar,zip,7z,tar}='extract'
+alias -s {txt}='v'
+
+# The 'cd' family ------------
+alias -g ~='cd ~'
+alias -g ..='cd ..'
+alias -g ...='cd ../..'
+alias -g ....='cd ../../..'
+alias -g .....='cd ../../../..'
+
+# Command
+alias s='sudo'
+alias rm='sudo rm -r'
+alias cp='cp -i -r'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+alias grep='grep --color=auto'
+alias y='yaourt'
+alias clean='sudo pacman -Rsn $(pacman -Qdtq)'
+alias shutdown='shutdown -h now'
+alias pacman='sudo pacman'
+alias netcfg='sudo netcfg'
+alias l='ls'
+
+#Quickly navigate fav folder
+alias inbox='cd /ntfs-data/inbox'
+alias book='cd /ntfs-data/docs/'
+alias work='cd /ntfs-data/work/'
+alias vid='cd /ntfs-data/vids'
+alias lang='cd /ntfs-data/docs/lang'
+alias build='~/.build/'
+alias dev='cd /ntfs-data/Dropbox/dev/'
+alias dotfiles='cd /ntfs-data/.dotFiles/'
+
+#Tweak application default running mode
+alias browser='chromium-browser'
+alias scrot='scrot -q100'
+alias urxvt='urxvtc&'
+alias gimp='gimp&exit'
+alias pidg='pidgin&'
+alias achrome='chromium-dev&exit'
+alias airc='irssi -n nXqd -w qungdung -c irc.freenode.net'
+alias mpd='mpd ~/.mpdconf'
+alias amplayer='mplayer -utf8'
+alias def="sdcv -u Oxford\ Advanced\ Learner\'s\ Dictionary"
+alias asynonym="sdcv -u Moby\ Thesaurus\ II"
+alias apc="python2 ~/.scripts/ideone.py"
+alias scim='scim -f x11 -c simple -d'
+alias vifm='vifm .'
+alias tmux='tmux attach'
+
+#Editor
+alias v='vim'
+alias s='subl'
