@@ -1,0 +1,8 @@
+# Write your default config options here!
+stop-xscreensaver="yes"
+sub-fuzziness=1
+font=/usr/share/fonts/TTF/Verdana.ttf
+#with subfont-text-scale you can change the size of fonts
+subfont-text-scale=3
+subcp="iso-8859-7"
+
