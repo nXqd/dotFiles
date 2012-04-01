@@ -1,3 +1,6 @@
 [submodule "/home/nxqd/.vim/bundle/mru"]
 	path = /home/nxqd/.vim/bundle/mru
 	url = https://github.com/vim-scripts/mru.vim
+[submodule "/home/nxqd/.vim/bundle/taglist"]
+	path = /home/nxqd/.vim/bundle/taglist
+	url = https://github.com/vim-scripts/taglist.vim.git
