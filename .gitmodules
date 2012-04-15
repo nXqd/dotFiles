@@ -4,3 +4,9 @@
 [submodule "/home/nxqd/.vim/bundle/taglist"]
 	path = /home/nxqd/.vim/bundle/taglist
 	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule "/home/nxqd/.vim/bundle/vim-css-color"]
+	path = /home/nxqd/.vim/bundle/vim-css-color
+	url = https://github.com/skammer/vim-css-color.git
+[submodule "/home/nxqd/.vim/bundle/vim-html5"]
+	path = /home/nxqd/.vim/bundle/vim-html5
+	url = https://github.com/othree/html5.vim.git
