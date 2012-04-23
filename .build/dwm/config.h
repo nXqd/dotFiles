@@ -8,24 +8,23 @@ static const char normfgcolor[]     = "#bbbbbb";
 static const char selbordercolor[]  = "#005577";
 static const char selbgcolor[]      = "#005577";
 static const char selfgcolor[]      = "#eeeeee";
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */ static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
 static const char *tags[] = { "term", "web", "relax", "read"};
 
-static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor */
+static const Rule rules[] = { /* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       False,       -1 },
+	{ NULL,       "chromium",       NULL,       1 << 1,       False,       -1 },
 };
 
 /* layout(s) */
 static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster      = 1;    /* number of clients in master area */
-static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
+static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -35,6 +34,8 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
+// check xmodmap to make sure that Mod1Mask is alt or control
+// if I map mac key, Mod1mask is control and ControlMask is alt
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -57,10 +58,9 @@ static const char *soundPrev[]      = { "ncmpcpp", "next", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
-  { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+  { Mod4Mask,                     NULL,      spawn,      {.v = dmenucmd } },
   { Mod4Mask,                     XK_Return, spawn,          {.v = termcmd } },
   { Mod4Mask,                     XK_p,      spawn,          {.v = padcmd } },
-    /* my own binding start */
   { Mod4Mask,                     XK_b,      spawn,          SHCMD("exec chromium-browser --user-data-dir=.chromium;") },
   {      0,                       XK_Print,  spawn,          SHCMD("exec scrot -q 100 -t 25 '%Y-%m-%d-%H-%M-%S.jpg' -e 'mv $f $m /ntfs-data/inbox/tmp/screenshots'") },
   {      0,                       0x1008ff12,spawn,          {.v = soundMute } },
@@ -68,18 +68,14 @@ static Key keys[] = {
   {      0,                       0x1008ff13,spawn,          {.v = soundUp } },
   {      0,                       0x1008ff16,spawn,          {.v = soundPrev } },
   {      0,                       0x1008ff17,spawn,          {.v = soundNext } },
-    /* my own binding end   */
   { MODKEY,                       XK_b,      togglebar,      {0} },
-  { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-  { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-  { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-  { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+  { Mod1Mask,                     XK_j,      focusstack,     {.i = +1 } },
+  { Mod1Mask,                     XK_k,      focusstack,     {.i = -1 } },
+  { Mod1Mask,                     XK_h,      setmfact,       {.f = -0.05} },
+  { Mod1Mask,                     XK_l,      setmfact,       {.f = +0.05} },
   { MODKEY,                       XK_Return, zoom,           {0} },
   { MODKEY,                       XK_Tab,    view,           {0} },
-  { MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-  { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-  { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-  { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+  { Mod1Mask,                     XK_q,      killclient,     {0} },
   { MODKEY,                       XK_space,  setlayout,      {0} },
   { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
   { MODKEY,                       XK_0,      view,           {.ui = ~0 } },

@@ -17,9 +17,14 @@ alias -g ...='cd ../..'
 alias -g ....='cd ../../..'
 alias -g .....='cd ../../../..'
 
+# The git family
+alias gs='git status'
+alias gc='git commit'
+alias ga='git add'
+alias gp='git push'
+
 # Command
 alias s='sudo'
-alias rm='sudo rm -r'
 alias cp='cp -i -r'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
@@ -32,7 +37,7 @@ alias netcfg='sudo netcfg'
 alias l='ls'
 
 #Quickly navigate fav folder
-alias inbox='cd /ntfs-data/inbox'
+alias inbox='cd /mnt/data/inbox'
 alias book='cd /ntfs-data/docs/'
 alias work='cd /ntfs-data/work/'
 alias vid='cd /ntfs-data/vids'
@@ -60,4 +65,3 @@ alias tmux='tmux attach'
 
 #Editor
 alias v='vim'
-alias s='subl'

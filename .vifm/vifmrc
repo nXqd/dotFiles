@@ -121,7 +121,7 @@ filetype *.html,*.htm links,mozilla
 filetype *.o nm %f | less
 
 " Image
-filetype *.jpg,*.jpeg,*.png,*.gif gpicview %c
+filetype *.jpg,*.jpeg,*.png,*.gif feh -. %c
 
 " Md5
 filetype *.md5 md5sum -c %f

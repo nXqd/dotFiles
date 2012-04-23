@@ -19,15 +19,12 @@
 "
 "    -> Plugins
 "       -> NERDTree plugin
-"       -> Minibuffer plugin
 "       -> MRU
 "       -> Omni complete functions
 "       -> cTags plugins
 "       -> Matchit                                          : extends % for various Languages
-"       -> AlignTabs
 "       -> php-doc
 "       -> pathogen                                         : Help manage runtime path
-"       -> FuzzyFinder
 "    -> Languages
 "       -> Python section
 "       -> PHP section
@@ -36,13 +33,25 @@
 "       -> CSS section
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Run pathogen before hand
+call pathogen#infect()
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " YOU SHOULD USE VIM IN A RIGHT WAY
 inoremap jk <esc>
+
 " Remap leader
 let g:mapleader = ","
+
+" Map copy and paste with system clipboard register
+map <C-y> "+y
+vmap <C-y> "+y
+map <C-p> "+p
+vmap <C-p> "+p
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -50,13 +59,20 @@ let g:mapleader = ","
 set fileencoding=utf8
 set fileencodings=ucs-bom,utf8,prc
 
-" / instead of \
+"Default file types
+set ffs=unix,dos,mac
+
+" / instead of \ in windows
 set shellslash
 
-" Check if which os gvim runs
-let win = 0
+" Get running OS
+let os = ""
 if has("win32")
-    let win = 1
+    let os="win"
+  else
+    if has("mac")
+      let os = "mac"
+    endif
 endif
 
 " Sets how many lines of history VIM has to remember
@@ -68,16 +84,17 @@ filetype indent on
 
 
 " edit vimrc according to os
-if win
+if os=="win"
     map <leader>e :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
 else
     map <leader>e :e! ~/.vimrc<cr>
 endif
 
+" quick save file
 nmap <leader>w : w!<cr>
 
-" When vimrc is edited, reload it
-if win
+" autoreload vimrc config
+if os=="win"
     au! bufwritepost _vimrc source D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
 else
     au! bufwritepost .vimrc source ~/.vimrc
@@ -125,7 +142,7 @@ highlight SpecialKey guifg=#dddddd
 syntax enable
 
 " Set font according to system
-if win
+if os=="win"
     set gfn=Consolas:h10
     set shell=cmd.exe
 else
@@ -142,10 +159,6 @@ if has("gui_running")
     colorscheme solarized
 endif
 
-" Encoding
-set fileencodings=ucs-bom,utf8,prc
-"Default file types
-set ffs=unix,dos,mac
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -157,7 +170,7 @@ set noswapfile
 
 "Persistent undo
 try
-    if win
+    if os=="win"
         set undodir=C:\Windows\Temp
     else
         set undodir=~/.vim_runtime/undodir
@@ -237,21 +250,6 @@ endfunction
 " Replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
-" Smart mappings on the command line
-cno $h e ~/
-cno $j e ./
-cno $c e <C-\>eCurrentFileDir("e")<cr>
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-
-func! Cwd()
-    let cwd = getcwd()
-    return "e " . cwd
-endfunc
-
-func! CurrentFileDir(cmd)
-    return a:cmd . " " . expand("%:p:h") . "/"
-endfunc
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -315,13 +313,6 @@ endtry
 set laststatus=2
 
 " Format the statusline
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c\ %P
-" set statusline=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k
-function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
-    return curdir
-endfunction
-
 function! HasPaste()
     if &paste
         return 'PASTE MODE  '
@@ -333,20 +324,25 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Brackets expanding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-vnoremap $q <esc>`>a'<esc>`<i'<esc>
-vnoremap $e <esc>`>a"<esc>`<i"<esc>
+let preBracket="`"
+if os=="mac"
+  let preBracket="$"
+endif
+
+exe 'vnoremap' . preBracket . '1 <esc>`>a)<esc>`<i(<esc>'
+exe 'vnoremap' . preBracket . '2 <esc>`>a]<esc>`<i[<esc>'
+exe 'vnoremap' . preBracket . '3 <esc>`>a}<esc>`<i{<esc>'
+exe 'vnoremap' . preBracket . '$ <esc>`>a"<esc>`<i"<esc>'
+exe 'vnoremap' . preBracket . 'q <esc>`>a''<esc>`<i''<esc>'
+exe 'vnoremap' . preBracket . 'e <esc>`>a"<esc>`<i"<esc>'
 
 " Map auto complete of (, ", ', [
-inoremap $1 ()<esc>i
-inoremap $2 []<esc>i
-inoremap $3 {}<esc>i
-inoremap $4 {<esc>o}<esc>O
-inoremap $q ''<esc>i
-inoremap $e ""<esc>i
+exe 'inoremap ' . preBracket . '1 ()<esc>i'
+exe 'inoremap ' . preBracket . '2 []<esc>i'
+exe 'inoremap ' . preBracket . '3 {}<esc>i'
+exe 'inoremap ' . preBracket . '4 {<esc>o}<esc>O'
+exe 'inoremap ' . preBracket . 'q ''''<esc>i'
+exe 'inoremap ' . preBracket . 'e ""<esc>i'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Shortcuts
@@ -399,26 +395,25 @@ call pathogen#infect()
 """"""""""""""""""""""""""""""
 map <leader>o :NERDTreeToggle<cr>
 
-""""""""""""""""""""""""""""""
-" => Minibuffer plugin
-""""""""""""""""""""""""""""""
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 2
-let g:miniBufExplModSelTarget = 0
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplVSplit = 15
-let g:miniBufExplSplitBelow=1
-
-let g:bufExplorerSortBy = "name"
-
-map <leader>u :TMiniBufExplorer<cr>
-
-""""""""""""""""""""""""""""""
-" => MRU blugin
-""""""""""""""""""""""""""""""
+" MRU blugin
 let MRU_Max_Entries = 400
 map <leader>r :MRU<CR>
+
+" YankRing
+map <leader>y :YRShow<CR>=
+
+" cTags plugins
+if os=="win"
+    let Tlist_Ctags_Cmd='d:\Dropbox\apps\gVimPortable\ctags\ctags.exe'
+endif
+map <leader>t :TlistToggle<cr>
+
+" FuzzyFinder
+nnoremap <leader>f :FufFile<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Languages
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
 " => Omni complete functions
@@ -426,24 +421,6 @@ map <leader>r :MRU<CR>
 au FileType css set omnifunc=csscomplete#CompleteCSS
 au FileType php set omnifunc=phpcomplete#CompletePHP
 " @TODO: Need to write a function for this
-
-""""""""""""""""""""""""""""""
-" => cTags plugins
-""""""""""""""""""""""""""""""
-if win
-    let Tlist_Ctags_Cmd='d:\Dropbox\apps\gVimPortable\ctags\ctags.exe'
-endif
-map <leader>t :TlistToggle<cr>
-
-
-""""""""""""""""""""""""""""""
-" => FuzzyFinder
-""""""""""""""""""""""""""""""
-nnoremap <leader>f :FufFile<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Languages
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
 " => PHP section
@@ -455,7 +432,7 @@ au FileType php vnoremap <C-P> :call PhpDocRange()<CR>
 """"""""""""""""""""""""""""""
 " => HTML section
 """"""""""""""""""""""""""""""
-if win
+if os=="win"
     nmap <silent> <Leader>b :!start C:\Users\Administrator\AppData\Local\Google\Chrome SxS\Application\chrome.exe %
 else
     nmap <silent> <Leader>b :!chromium-browser --user-data-dir=~/.chromium % &
@@ -464,4 +441,4 @@ endif
 """"""""""""""""""""""""""""""
 " => CSS section
 """"""""""""""""""""""""""""""
-au BufRead,BufNewFile *.css set ft=css syntax=css3
+"au BufRead,BufNewFile *.css set ft=css syntax=css3
