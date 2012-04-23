@@ -129,7 +129,7 @@ if win
     set gfn=Consolas:h10
     set shell=cmd.exe
 else
-    set gfn=Consolas
+    set gfn=Consolas:h13
     set shell=/bin/zsh
 endif
 
@@ -139,7 +139,7 @@ if has("gui_running")
     set guioptions-=r  "remove right-hand scroll bar
     set guioptions-=l  "remove left-hand scroll bar
     set background=dark
-    colorscheme wombat
+    colorscheme solarized
 endif
 
 " Encoding
@@ -371,7 +371,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 " => Cope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Do :help cope if you are unsure what cope is. It's super useful!
-map <leader>cc :botright cope<cr>
+" map <leader>cc :botright cope<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
@@ -390,6 +390,9 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" => Pathogen
+call pathogen#infect()
 
 """"""""""""""""""""""""""""""
 " => NERDTree plugin
@@ -432,10 +435,6 @@ if win
 endif
 map <leader>t :TlistToggle<cr>
 
-""""""""""""""""""""""""""""""
-" => Pathogen
-""""""""""""""""""""""""""""""
-call pathogen#infect()
 
 """"""""""""""""""""""""""""""
 " => FuzzyFinder
