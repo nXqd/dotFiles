@@ -208,7 +208,7 @@ settings = {
   "fe-common/core" = {
     term_charset = "utf-8";
     completion_strict = "no";
-    completion_char = ": ";
+    completion_char = ":";
     beep_when_away = "yes";
     beep_when_window_active = "yes";
     bell_beeps = "yes";
@@ -227,7 +227,7 @@ keyboard = (
 ignores = (
   {
     level = "JOINS PARTS QUITS MODES";
-    channels = ( "#archlinux", "#vim", "#powershell" );
+    channels = ( "#archlinux", "#vim", "#powershell", "##English" );
     network  = "FreeNode";
   },
   {

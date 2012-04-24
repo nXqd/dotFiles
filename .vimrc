@@ -344,6 +344,10 @@ exe 'inoremap ' . preBracket . '4 {<esc>o}<esc>O'
 exe 'inoremap ' . preBracket . 'q ''''<esc>i'
 exe 'inoremap ' . preBracket . 'e ""<esc>i'
 
+" Map to enter ; end of line
+inoremap <leader>; <esc>A;
+nnoremap <leader>; A;<esc>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
