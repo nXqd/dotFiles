@@ -399,8 +399,8 @@ call pathogen#infect()
 map <leader>o :NERDTreeToggle<cr>
 
 " MRU blugin
-let MRU_Max_Entries = 400
-map <leader>r :MRU<CR>
+"let MRU_Max_Entries = 400
+"map <leader>r :MRU<CR>
 
 " YankRing
 map <leader>y :YRShow<CR>=
@@ -431,9 +431,7 @@ au FileType php set omnifunc=phpcomplete#CompletePHP
 """"""""""""""""""""""""""""""
 " => PHP section
 """"""""""""""""""""""""""""""
-au FileType php inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
-au FileType php nnoremap <C-P> :call PhpDocSingle()<CR>
-au FileType php vnoremap <C-P> :call PhpDocRange()<CR>
+au FileType php map <leader>r :!php %<CR>
 
 """"""""""""""""""""""""""""""
 " => HTML section
