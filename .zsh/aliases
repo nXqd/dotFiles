@@ -30,21 +30,20 @@ alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias grep='grep --color=auto'
 alias y='yaourt'
+alias p='packer'
 alias clean='sudo pacman -Rsn $(pacman -Qdtq)'
 alias shutdown='shutdown -h now'
 alias pacman='sudo pacman'
 alias netcfg='sudo netcfg'
 alias l='ls'
 
+
 #Quickly navigate fav folder
-alias inbox='cd /mnt/data/inbox'
-alias book='cd /ntfs-data/docs/'
-alias work='cd /ntfs-data/work/'
-alias vid='cd /ntfs-data/vids'
-alias lang='cd /ntfs-data/docs/lang'
+dataFolder='/mnt/data'
+alias inbox='${dataFolder}/inbox'
+alias book='${dataFolder}/Dropbox/book/'
+alias dev='${dataFolder}/dev'
 alias build='~/.build/'
-alias dev='cd /ntfs-data/Dropbox/dev/'
-alias dotfiles='cd /ntfs-data/.dotFiles/'
 
 #Tweak application default running mode
 alias browser='chromium-browser'

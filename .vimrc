@@ -18,13 +18,14 @@
 "    -> Spell Checking
 "
 "    -> Plugins
+"       -> pathogen                                         : Help manage runtime path
 "       -> NERDTree plugin
 "       -> MRU
 "       -> Omni complete functions
 "       -> cTags plugins
 "       -> Matchit                                          : extends % for various Languages
 "       -> php-doc
-"       -> pathogen                                         : Help manage runtime path
+"       -> gist
 "    -> Languages
 "       -> Python section
 "       -> PHP section
@@ -391,12 +392,10 @@ map <leader>s? z=
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" => Pathogen
+" Pathogen
 call pathogen#infect()
 
-""""""""""""""""""""""""""""""
-" => NERDTree plugin
-""""""""""""""""""""""""""""""
+" NERDTree plugin
 map <leader>o :NERDTreeToggle<cr>
 
 " MRU blugin
@@ -414,6 +413,9 @@ map <leader>t :TlistToggle<cr>
 
 " FuzzyFinder
 nnoremap <leader>f :FufFile<CR>
+
+" gist
+let g:gist_clip_command = 'xclip -selection clipboard'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Languages

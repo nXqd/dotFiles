@@ -58,16 +58,18 @@ static const char *soundPrev[]      = { "ncmpcpp", "next", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
-  { Mod4Mask,                     NULL,      spawn,      {.v = dmenucmd } },
+  { Mod4Mask,                     XK_space,      spawn,      {.v = dmenucmd } },
   { Mod4Mask,                     XK_Return, spawn,          {.v = termcmd } },
   { Mod4Mask,                     XK_p,      spawn,          {.v = padcmd } },
-  { Mod4Mask,                     XK_b,      spawn,          SHCMD("exec chromium-browser --user-data-dir=.chromium;") },
+  { Mod4Mask,                     XK_b,      spawn,          SHCMD("exec chromium-browser") },
   {      0,                       XK_Print,  spawn,          SHCMD("exec scrot -q 100 -t 25 '%Y-%m-%d-%H-%M-%S.jpg' -e 'mv $f $m /ntfs-data/inbox/tmp/screenshots'") },
+  //map media functions for 7818u
   {      0,                       0x1008ff12,spawn,          {.v = soundMute } },
   {      0,                       0x1008ff11,spawn,          {.v = soundDown } },
   {      0,                       0x1008ff13,spawn,          {.v = soundUp } },
   {      0,                       0x1008ff16,spawn,          {.v = soundPrev } },
   {      0,                       0x1008ff17,spawn,          {.v = soundNext } },
+
   { MODKEY,                       XK_b,      togglebar,      {0} },
   { Mod1Mask,                     XK_j,      focusstack,     {.i = +1 } },
   { Mod1Mask,                     XK_k,      focusstack,     {.i = -1 } },

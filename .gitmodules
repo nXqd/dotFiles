@@ -8,7 +8,7 @@
 	path = /home/nxqd/.vim/bundle/vim-css-color
 	url = https://github.com/skammer/vim-css-color.git
 [submodule ".vim/bundle/vim-html5"]
-	path = /home/nxqd/.vim/bundle/vim-html5
+	path = /home/nxqd/.vim/bundle/html5
 	url = https://github.com/othree/html5.vim.git
 [submodule ".vim/bundle/csv"]
 	path = .vim/bundle/csv
