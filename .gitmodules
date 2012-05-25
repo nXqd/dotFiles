@@ -1,12 +1,24 @@
-[submodule "/home/nxqd/.vim/bundle/mru"]
+[submodule ".vim/bundle/mru"]
 	path = /home/nxqd/.vim/bundle/mru
 	url = https://github.com/vim-scripts/mru.vim
-[submodule "/home/nxqd/.vim/bundle/taglist"]
+[submodule ".vim/bundle/taglist"]
 	path = /home/nxqd/.vim/bundle/taglist
 	url = https://github.com/vim-scripts/taglist.vim.git
-[submodule "/home/nxqd/.vim/bundle/vim-css-color"]
+[submodule ".vim/bundle/vim-css-color"]
 	path = /home/nxqd/.vim/bundle/vim-css-color
 	url = https://github.com/skammer/vim-css-color.git
-[submodule "/home/nxqd/.vim/bundle/vim-html5"]
+[submodule ".vim/bundle/vim-html5"]
 	path = /home/nxqd/.vim/bundle/vim-html5
 	url = https://github.com/othree/html5.vim.git
+[submodule ".vim/bundle/csv"]
+	path = .vim/bundle/csv
+	url = https://github.com/chrisbra/csv.vim.git
+[submodule ".vim/bundle/webapi"]
+	path = .vim/bundle/webapi
+	url = https://github.com/mattn/webapi-vim.git
+[submodule ".vim/bundle/gist"]
+	path = .vim/bundle/gist
+	url = https://github.com/mattn/gist-vim.git
+[submodule ".vim/bundle/snipmate"]
+	path = .vim/bundle/snipmate
+	url = https://github.com/garbas/vim-snipmate.git
