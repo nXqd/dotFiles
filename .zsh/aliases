@@ -40,10 +40,11 @@ alias l='ls'
 
 #Quickly navigate fav folder
 dataFolder='/mnt/data'
-alias inbox='${dataFolder}/inbox'
-alias book='${dataFolder}/Dropbox/book/'
-alias dev='${dataFolder}/dev'
-alias build='~/.build/'
+alias inbox='cd ${dataFolder}/inbox'
+alias book='cd ${dataFolder}/Dropbox/book/'
+alias dev='cd ${dataFolder}/dev'
+alias build='cd ~/.build/'
+alias dhttp='/srv/http/'
 
 #Tweak application default running mode
 alias browser='chromium-browser'

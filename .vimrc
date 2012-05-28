@@ -26,6 +26,7 @@
 "       -> Matchit                                          : extends % for various Languages
 "       -> php-doc
 "       -> gist
+"       -> ctrlP
 "    -> Languages
 "       -> Python section
 "       -> PHP section
@@ -86,13 +87,16 @@ filetype indent on
 
 " edit vimrc according to os
 if os=="win"
-    map <leader>e :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
+    map <leader>rc :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
 else
-    map <leader>e :e! ~/.vimrc<cr>
+    map <leader>rc :e! ~/.vimrc<cr>
 endif
 
 " quick save file
 nmap <leader>w : w!<cr>
+
+" quick edit file
+nmap <leader>e :e
 
 " autoreload vimrc config
 if os=="win"
@@ -411,11 +415,12 @@ if os=="win"
 endif
 map <leader>t :TlistToggle<cr>
 
-" FuzzyFinder
-nnoremap <leader>f :FufFile<CR>
-
 " gist
 let g:gist_clip_command = 'xclip -selection clipboard'
+
+" ctrlP
+nnoremap <leader>f :CtrlP<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Languages
