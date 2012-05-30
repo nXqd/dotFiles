@@ -4,7 +4,6 @@
 "
 " Sections:
 "    -> General
-"    -> Vim UI
 "    -> Colors and Fonts
 "    -> Files and backups
 "    -> Text, tab and indent related
@@ -12,10 +11,8 @@
 "    -> Command mode related
 "    -> Moving around, tabs and buffers
 "    -> Statusline
-"    -> Brackets expanding
 "    -> Shortcuts
 "    -> Cope
-"    -> Spell Checking
 "
 "    -> Plugins
 "       -> pathogen                                         : Help manage runtime path
@@ -45,27 +42,58 @@ call pathogen#infect()
 " YOU SHOULD USE VIM IN A RIGHT WAY
 inoremap jk <esc>
 
-" Remap leader
-let g:mapleader = ","
-
-" Map copy and paste with system clipboard register
-map <C-y> "+y
-vmap <C-y> "+y
-map <C-p> "+p
-vmap <C-p> "+p
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Unicode
-set fileencoding=utf8
-set fileencodings=ucs-bom,utf8,prc
 
-"Default file types
-set ffs=unix,dos,mac
+" No sound on errors
+set noerrorbells
+set novisualbell
 
-" / instead of \ in windows
-set shellslash
+set fileencoding=utf8 nobomb
+set fileformats=unix,dos,mac
+set shellslash                    " Use / instead of \ in Windows
+
+set scrolloff=7                   " Set 7 lines to the curors - when moving vertical..
+set wildmenu                      " Turn on WiLd menu
+set ruler                         " Always show current position
+set cmdheight=1                   " The commandbar height
+set hidden                        " Change buffer - without saving
+set relativenumber
+
+" Set backspace config
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Search
+set ignorecase                 " Ignore case when searching
+set smartcase
+set hlsearch                   " Highlight search things
+set incsearch                  " Make search act like search in modern browsers
+set nolazyredraw
+set magic                      " Set magic on, for regular expressions
+set showmatch                  " Show matching bracets when text indicator is over them
+set timeoutlen=500
+set history=50
+
+
+" Turn backup off, since most stuff is in SVN, git anyway...
+set nobackup
+set nowb
+set noswapfile
+
+"Persistent undo
+try
+    if os=="win"
+        set undodir=C:\Windows\Temp
+    else
+        set undodir=~/.vim_runtime/undodir
+    endif
+
+    set undofile
+catch
+endtry
 
 " Get running OS
 let os = ""
@@ -77,13 +105,10 @@ if has("win32")
     endif
 endif
 
-" Sets how many lines of history VIM has to remember
-set history=200
 
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
-
 
 " edit vimrc according to os
 if os=="win"
@@ -104,36 +129,6 @@ if os=="win"
 else
     au! bufwritepost .vimrc source ~/.vimrc
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim UI
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set so=7                       " Set 7 lines to the curors - when moving vertical..
-set wildmenu                   " Turn on WiLd menu
-set ruler                      " Always show current position
-set cmdheight=1                " The commandbar height
-set hid                        " Change buffer - without saving
-set nu                         " No line number
-
-" Set backspace config
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-" Search
-set ignorecase                 " Ignore case when searching
-set smartcase
-set hlsearch                   " Highlight search things
-set incsearch                  " Make search act like search in modern browsers
-set nolazyredraw
-set magic                      " Set magic on, for regular expressions
-set showmatch                  " Show matching bracets when text indicator is over them
-set mat=2                      " How many tenths of a second to blink
-
-" No sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -165,25 +160,6 @@ if has("gui_running")
 endif
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git anyway...
-set nobackup
-set nowb
-set noswapfile
-
-"Persistent undo
-try
-    if os=="win"
-        set undodir=C:\Windows\Temp
-    else
-        set undodir=~/.vim_runtime/undodir
-    endif
-
-    set undofile
-catch
-endtry
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -327,8 +303,33 @@ function! HasPaste()
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Brackets expanding
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Shortcuts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Remap leader
+let g:mapleader = ","
+
+" Map copy and paste with system clipboard register
+map <C-y> "+y
+vmap <C-y> "+y
+map <C-p> "+p
+vmap <C-p> "+p
+
+" map select all text to C-A
+noremap <C-A> ggVG
+
+" Remap saving
+nmap <leader>w : w!<cr>
+
+"Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Brackets expanding
 let preBracket="`"
 if os=="mac"
   let preBracket="$"
@@ -352,22 +353,6 @@ exe 'inoremap ' . preBracket . 'e ""<esc>i'
 " Map to enter ; end of line
 inoremap <leader>; <esc>A;
 nnoremap <leader>; A;<esc>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Shortcuts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" map select all text to C-A
-noremap <C-A> ggVG
-
-" Remap saving
-nmap <leader>w : w!<cr>
-
-"Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " open file in same directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
