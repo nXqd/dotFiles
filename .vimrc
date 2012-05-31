@@ -61,6 +61,7 @@ set ruler                         " Always show current position
 set cmdheight=1                   " The commandbar height
 set hidden                        " Change buffer - without saving
 set relativenumber
+set cursorline
 
 " Set backspace config
 set backspace=eol,start,indent
@@ -285,17 +286,17 @@ endtry
 """"""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
-" Always show the statusline
-set laststatus=2
+if has('statusline')
+  set laststatus=2
 
-" Format the statusline
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    else
-        return ''
-    endif
-endfunction
+  " Broken down into easily includeable segments
+  set statusline=%<%f\    " Filename
+  set statusline+=%w%h%m%r " Options
+  set statusline+=%{fugitive#statusline()} "  Git Hotness
+  set statusline+=\ [%{&ff}/%Y]            " filetype
+  set statusline+=\ [%{getcwd()}]          " current dir
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -427,7 +428,7 @@ au FileType php map <leader>r :!php %<CR>
 if os=="win"
     nmap <silent> <Leader>b :!start C:\Users\Administrator\AppData\Local\Google\Chrome SxS\Application\chrome.exe %
 else
-    nmap <silent> <Leader>b :!chromium-browser --user-data-dir=~/.chromium % &
+    nmap <silent> <Leader>b :!chromium-browser % &
 endif
 
 """"""""""""""""""""""""""""""
