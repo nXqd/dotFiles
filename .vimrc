@@ -66,6 +66,10 @@ set relativenumber
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
+" Enable filetype plugin
+filetype plugin on
+filetype indent on
+
 " Search
 set ignorecase                 " Ignore case when searching
 set smartcase
@@ -106,10 +110,6 @@ if has("win32")
 endif
 
 
-" Enable filetype plugin
-filetype plugin on
-filetype indent on
-
 " edit vimrc according to os
 if os=="win"
     map <leader>rc :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
@@ -117,11 +117,6 @@ else
     map <leader>rc :e! ~/.vimrc<cr>
 endif
 
-" quick save file
-nmap <leader>w : w!<cr>
-
-" quick edit file
-nmap <leader>e :e
 
 " autoreload vimrc config
 if os=="win"
@@ -311,17 +306,20 @@ endfunction
 " Remap leader
 let g:mapleader = ","
 
+" quick save file
+nmap <leader>w : w!<cr>
+
+" quick edit file
+nmap <leader>e :e
+
+" map select all text to C-A
+noremap <C-A> ggVG
+
 " Map copy and paste with system clipboard register
 map <C-y> "+y
 vmap <C-y> "+y
 map <C-p> "+p
 vmap <C-p> "+p
-
-" map select all text to C-A
-noremap <C-A> ggVG
-
-" Remap saving
-nmap <leader>w : w!<cr>
 
 "Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z

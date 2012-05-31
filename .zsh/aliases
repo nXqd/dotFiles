@@ -27,16 +27,11 @@ alias gp='git push'
 alias s='sudo'
 alias cp='cp -i -r'
 alias mv='mv -i'
-alias mkdir='mkdir -p'
+alias md='mkdir -p'
 alias grep='grep --color=auto'
-alias y='yaourt'
 alias p='packer'
 alias clean='sudo pacman -Rsn $(pacman -Qdtq)'
-alias shutdown='shutdown -h now'
-alias pacman='sudo pacman'
-alias netcfg='sudo netcfg'
-alias l='ls'
-
+alias sd='shutdown -h now'
 
 #Quickly navigate fav folder
 dataFolder='/mnt/data'
@@ -44,24 +39,15 @@ alias inbox='cd ${dataFolder}/inbox'
 alias book='cd ${dataFolder}/Dropbox/book/'
 alias dev='cd ${dataFolder}/dev'
 alias build='cd ~/.build/'
-alias dhttp='/srv/http/'
+alias cw='/srv/http/'
 
 #Tweak application default running mode
-alias browser='chromium-browser'
 alias scrot='scrot -q100'
 alias urxvt='urxvtc&'
 alias gimp='gimp&exit'
-alias pidg='pidgin&'
-alias achrome='chromium-dev&exit'
-alias airc='irssi -n nXqd -w qungdung -c irc.freenode.net'
-alias mpd='mpd ~/.mpdconf'
-alias amplayer='mplayer -utf8'
 alias def="sdcv -u Oxford\ Advanced\ Learner\'s\ Dictionary"
 alias asynonym="sdcv -u Moby\ Thesaurus\ II"
-alias apc="python2 ~/.scripts/ideone.py"
-alias scim='scim -f x11 -c simple -d'
 alias vifm='vifm .'
-alias tmux='tmux attach'
 
 #Editor
 alias v='vim'
