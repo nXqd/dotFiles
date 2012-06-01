@@ -47,6 +47,9 @@ inoremap jk <esc>
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Remap leader
+let g:mapleader = ","
+
 " No sound on errors
 set noerrorbells
 set novisualbell
@@ -105,8 +108,13 @@ let os = ""
 if has("win32")
     let os="win"
   else
-    if has("mac")
-      let os = "mac"
+    if has("unix")
+      let s:uname = system("uname")
+      if s:uname == "Darwin"
+        let os="mac"
+      else
+        let os="unix"
+      endif
     endif
 endif
 
@@ -155,12 +163,9 @@ if has("gui_running")
     colorscheme solarized
 endif
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Remove trailing spaces
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
@@ -175,7 +180,6 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 	" Auto remove when saving
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
 " display indentation guides
 set shiftwidth=2
 set tabstop=2
@@ -188,7 +192,6 @@ set tw=500
 set ai     " Auto indent
 set si     " Smart indent
 set nowrap
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
@@ -304,8 +307,6 @@ endif
 " => Shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Remap leader
-let g:mapleader = ","
 
 " quick save file
 nmap <leader>w : w!<cr>
