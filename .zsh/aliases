@@ -32,6 +32,7 @@ alias grep='grep --color=auto'
 alias p='packer'
 alias clean='sudo pacman -Rsn $(pacman -Qdtq)'
 alias sd='shutdown -h now'
+alias ws='sudo wifi-select wlan0'
 
 #Quickly navigate fav folder
 dataFolder='/mnt/data'

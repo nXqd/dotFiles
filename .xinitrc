@@ -8,7 +8,7 @@ xset -b
 #mouse speed
 xset m 1/5
 #keyboard repeat
-xset r rate 150 30
+xset r rate 200 30
 #font
 xset +fp /usr/share/fonts/local
 xset fp rehash
