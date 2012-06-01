@@ -67,3 +67,6 @@
 [submodule ".vim/bundle/webapi"]
 	path = .vim/bundle/webapi
 	url = https://github.com/mattn/webapi-vim.git
+[submodule ".vim/bundle/yankring"]
+	path = .vim/bundle/yankring
+	url = https://github.com/vim-scripts/YankRing.vim.git

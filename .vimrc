@@ -36,14 +36,6 @@
 call pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Tips
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" YOU SHOULD USE VIM IN A RIGHT WAY
-inoremap jk <esc>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -85,13 +77,23 @@ set showmatch                  " Show matching bracets when text indicator is ov
 set timeoutlen=500
 set history=50
 
+" display indentation guides
+set shiftwidth=2
+set tabstop=2
+set smarttab
+set expandtab
+set linebreak
+set textwidth=500
+set autoindent
+set smartindent
+set nowrap
 
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
 set nowb
 set noswapfile
 
-"Persistent undo
+" Undo
 try
     if os=="win"
         set undodir=C:\Windows\Temp
@@ -142,7 +144,7 @@ endif
 highlight NonText guifg=#dddddd
 highlight SpecialKey guifg=#dddddd
 
-" Enable syntax hilight
+" enable syntax highlight
 syntax enable
 
 " Set font according to system
@@ -150,7 +152,7 @@ if os=="win"
     set gfn=Consolas:h10
     set shell=cmd.exe
 else
-    set gfn=Consolas:h13
+    set gfn=Consolas:h12
     set shell=/bin/zsh
 endif
 
@@ -180,18 +182,7 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 	" Auto remove when saving
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-" display indentation guides
-set shiftwidth=2
-set tabstop=2
-set smarttab
-set expandtab
 
-set lbr
-set tw=500
-
-set ai     " Auto indent
-set si     " Smart indent
-set nowrap
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
@@ -233,22 +224,25 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Map space to / (search) and c-space to ? (backgwards search)
 map <space> /
 map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
 
-" Smart way to move btw. windows
+" Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-
+" buffer delete
 map <leader>bd :bdelete<cr>
+
+" buffer close
 map <leader>bc :Bclose<cr>
 
-" Close all the buffers
+" close all buffers
 map <leader>ba :1,300 bd!<cr>
 
 " Use the arrows to something usefull
@@ -285,10 +279,9 @@ try
 catch
 endtry
 
-
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Statusline
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('statusline')
   set laststatus=2
 
@@ -301,28 +294,22 @@ if has('statusline')
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 " quick save file
 nmap <leader>w : w!<cr>
-
+" Save a file as root (,W)
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " quick edit file
 nmap <leader>e :e
-
 " map select all text to C-A
 noremap <C-A> ggVG
-
 " Map copy and paste with system clipboard register
 map <C-y> "+y
 vmap <C-y> "+y
 map <C-p> "+p
 vmap <C-p> "+p
-
 "Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
@@ -341,7 +328,6 @@ exe 'vnoremap' . preBracket . '3 <esc>`>a}<esc>`<i{<esc>'
 exe 'vnoremap' . preBracket . '$ <esc>`>a"<esc>`<i"<esc>'
 exe 'vnoremap' . preBracket . 'q <esc>`>a''<esc>`<i''<esc>'
 exe 'vnoremap' . preBracket . 'e <esc>`>a"<esc>`<i"<esc>'
-
 " Map auto complete of (, ", ', [
 exe 'inoremap ' . preBracket . '1 ()<esc>i'
 exe 'inoremap ' . preBracket . '2 []<esc>i'
@@ -353,7 +339,6 @@ exe 'inoremap ' . preBracket . 'e ""<esc>i'
 " Map to enter ; end of line
 inoremap <leader>; <esc>A;
 nnoremap <leader>; A;<esc>
-
 " open file in same directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
@@ -380,10 +365,6 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Pathogen
-call pathogen#infect()
-
 " NERDTree plugin
 map <leader>o :NERDTreeToggle<cr>
 
