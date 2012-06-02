@@ -7,9 +7,11 @@ my handy weapon.
 
 Installation
 ----------
-1. Clone the project
-2. Run `.\bootstrap.sh`
-3. You are done
+```terminal
+git clone git@github.com:nXqd/dotFiles.git ~/.dotFiles
+cd ~/.dotfiles
+./bootstrap.sh
+```
 
 OSX
 ---
