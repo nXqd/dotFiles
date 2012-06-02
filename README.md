@@ -13,7 +13,7 @@ Installation
 
 OSX
 ---
-1. `.\.osx` for some useful configs for Mac OSX system.
+1. `.\.osx` to config some settings in mac osx. You can read the file for more information.
 
 TODO
 ----
