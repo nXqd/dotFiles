@@ -11,8 +11,7 @@ URxvt.letterSpace: .5
 
 ! -- Xft settings -- !
 Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
+Xft.antialias:  true Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hinstyle:   hintsfull
 
@@ -41,20 +40,10 @@ URxvt.boldFont:xft:monaco:bold:size=8
 !URxvt.boldFont: -*-terminus-medium-r-*-*-16*-*-*-*-*
 
 ! -- Colours -- !
-#include "/home/nxqd/.colours/colorful"
-!#include "/home/nxqd/.colours/low"
-!#include "/home/nxqd/.colours/old"
-!#include "/home/nxqd/.colours/soft"
-!#include "/home/nxqd/.colours/washed"
-!#include "/home/nxqd/.colours/bright"
-!#include "/home/nxqd/.colours/lich"
-!#include "/home/nxqd/.colours/rab"
-!#include "/home/nxqd/.colours/reasons"
-!#include "/home/nxqd/.colours/zenburn"
+#include "/home/nxqd/.colours/dark"
 
 ! -- Clickable urls -- !
 URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: /home/nxqd/Scripts/vimprobtab.sh
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: fg16 RS_Uline
 
