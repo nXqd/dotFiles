@@ -83,10 +83,11 @@ set tabstop=2
 set smarttab
 set expandtab
 set linebreak
-set textwidth=500
 set autoindent
 set smartindent
-set nowrap
+" you should write short and beautiful code
+set textwidth=120
+set wrap
 
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
