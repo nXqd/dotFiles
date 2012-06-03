@@ -1,49 +1,36 @@
 ! Urxvt
 URxvt.buffered: true
-URxvt.background: #121212
-URxvt.foreground: #999999
+URxvt.background: [100]#121212
+URxvt.foreground: [65]#FFFFFF
 URxvt.cursorColor: #5E468C
 URxvt.cursorBlink: true
 URxvt.geometry: 80x22
-URxvt.transparent: 0
 URxvt*urgentOnBell: true
 URxvt.letterSpace: .5
+! transparency
+URxvt.depth: 32
+URxvt.transparent: true
+URxvt.shading: 10
 
 ! -- Xft settings -- !
 Xft.dpi:        96
-Xft.antialias:  true Xft.rgba:       rgb
+Xft.antialias:  true
+Xft.rgba:       rgb
 Xft.hinting:    true
-Xft.hinstyle:   hintsfull
+Xft.hinstyle:   hintslight
 
 ! borderless and no scrollbar
 URxvt*scrollBar_right: false
 URxvt*scrollBar: false
 URxvt*borderLess: false
 
-! teh transparency stuff
-URxvt*inheritPixmap: false
-URxvt*tintColor: #080808
-URxvt*shading: 0
-
 ! -- Fonts -- !
-!URxvt.font:xft:Droid Sans Mono Slashed:medium:size=8.6
-!URxvt.boldFont:xft:Droid Sans Mono Slashed:bold:size=8.6
-URxvt.font:xft:monaco:medium:size=8
-URxvt.boldFont:xft:monaco:bold:size=8
-
-!URxvt.font:xft:envy code r:medium:size=9
-!URxvt.boldFont:xft:envy code r:medium:size=9
-!URxvt.font:xft:inconsolata:bold:pixelsize=12
-!URxvt.font:     -*-dina-medium-r-normal-*-*-*-*-*-*-*-*-*
-!URxvt.boldFont: -*-dina-medium-r-normal-*-*-*-*-*-*-*-*-*
-!URxvt.font:     -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
-!URxvt.boldFont: -*-terminus-medium-r-*-*-16*-*-*-*-*
-
-! -- Colours -- !
-#include "/home/nxqd/.colours/dark"
+URxvt.font:xft:consolas:medium:size=9
 
 ! -- Clickable urls -- !
 URxvt.perl-ext-common: default,matcher
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: fg16 RS_Uline
 
+! -- Colours -- !
+#include ".colours/dark"
