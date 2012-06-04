@@ -18,7 +18,6 @@
 "       -> pathogen                                         : Help manage runtime path
 "       -> NERDTree plugin
 "       -> MRU
-"       -> Omni complete functions
 "       -> cTags plugins
 "       -> Matchit                                          : extends % for various Languages
 "       -> php-doc
@@ -42,12 +41,14 @@ call pathogen#infect()
 " Remap leader
 let g:mapleader = ","
 
+set nocompatible
 " No sound on errors
 set noerrorbells
 set novisualbell
-
+" File default format
 set fileencoding=utf8 nobomb
 set fileformats=unix,dos,mac
+" Slash
 set shellslash                    " Use / instead of \ in Windows
 
 set scrolloff=7                   " Set 7 lines to the curors - when moving vertical..
@@ -74,7 +75,6 @@ set incsearch                  " Make search act like search in modern browsers
 set nolazyredraw
 set magic                      " Set magic on, for regular expressions
 set showmatch                  " Show matching bracets when text indicator is over them
-set timeoutlen=500
 set history=50
 
 " display indentation guides
@@ -85,7 +85,8 @@ set expandtab
 set linebreak
 set autoindent
 set smartindent
-" you should write short and beautiful code
+
+" keep your code clean and easy to read
 set textwidth=120
 set wrap
 
@@ -93,18 +94,6 @@ set wrap
 set nobackup
 set nowb
 set noswapfile
-
-" Undo
-try
-    if os=="win"
-        set undodir=C:\Windows\Temp
-    else
-        set undodir=~/.vim_runtime/undodir
-    endif
-
-    set undofile
-catch
-endtry
 
 " Get running OS
 let os = ""
@@ -121,6 +110,18 @@ if has("win32")
     endif
 endif
 
+" Undo
+set undofile
+try
+    if os=="win"
+        set undodir=C:\Windows\Temp
+    else
+        set undodir=~/.vim_runtime/undodir
+    endif
+catch
+endtry
+
+
 
 " edit vimrc according to os
 if os=="win"
@@ -128,7 +129,6 @@ if os=="win"
 else
     map <leader>rc :e! ~/.vimrc<cr>
 endif
-
 
 " autoreload vimrc config
 if os=="win"
@@ -156,7 +156,7 @@ else
     set gfn=Consolas:h12
     set shell=/bin/zsh
 endif
-
+" Gvim
 if has("gui_running")
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
@@ -194,7 +194,9 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+
+" Replace selected text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " from an idea by michael naumann
 function! VisualSearch(direction) range
@@ -219,8 +221,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Replace selected text
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
@@ -386,24 +387,17 @@ map <leader>t :TlistToggle<cr>
 let g:gist_clip_command = 'xclip -selection clipboard'
 
 " ctrlP
-nnoremap <leader>f :CtrlP<CR>
-
+let g:ctrlp_map = '<leader>f'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Languages
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
-" => Omni complete functions
-""""""""""""""""""""""""""""""
-au FileType css set omnifunc=csscomplete#CompleteCSS
-au FileType php set omnifunc=phpcomplete#CompletePHP
-" @TODO: Need to write a function for this
-
-""""""""""""""""""""""""""""""
 " => PHP section
 """"""""""""""""""""""""""""""
 au FileType php map <leader>r :!php %<CR>
+au FileType php set omnifunc=phpcomplete#CompletePHP
 
 """"""""""""""""""""""""""""""
 " => HTML section
@@ -411,10 +405,10 @@ au FileType php map <leader>r :!php %<CR>
 if os=="win"
     nmap <silent> <Leader>b :!start C:\Users\Administrator\AppData\Local\Google\Chrome SxS\Application\chrome.exe %
 else
-    nmap <silent> <Leader>b :!chromium-browser % &
+    nmap <silent> <Leader>b :!google-chrome % &
 endif
 
 """"""""""""""""""""""""""""""
 " => CSS section
 """"""""""""""""""""""""""""""
-"au BufRead,BufNewFile *.css set ft=css syntax=css3
+au FileType css set omnifunc=csscomplete#CompleteCSS
