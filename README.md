@@ -20,6 +20,6 @@ OSX
 TODO
 ----
 1. Make a better document for the current vim.
-2. Make this work cross platform.2. Make this work cross platform.
+2. Make this work cross platform.
 
 Feel free to post issues and ideas to make this better.
