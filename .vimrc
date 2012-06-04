@@ -369,6 +369,7 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree plugin
 map <leader>o :NERDTreeToggle<cr>
+let g:NERDTreeDirArrows=0
 
 " MRU blugin
 "let MRU_Max_Entries = 400
