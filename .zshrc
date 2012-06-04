@@ -29,13 +29,14 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode)
+plugins=(git vi-mode node)
 
+# Input method
 export XMODIFIERS="@im=ibus"
 export GTK_IM_MODULE="ibus"
 export QT_IM_MODULE="ibus"
 
-# Import
+# Customized stuffs
 . ~/.zsh/aliases
 . ~/.zsh/functs
 . ~/.zsh/configs
@@ -43,4 +44,5 @@ export QT_IM_MODULE="ibus"
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+# PATHS
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/usr/share/pear
