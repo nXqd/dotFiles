@@ -98,6 +98,8 @@ require "bookmarks"
 -- Add download support
 require "downloads"
 require "downloads_chrome"
+    -- default download dir
+    downloads.default_dir = "/mnt/data/inbox"
 
 -- Add vimperator-like link hinting & following
 -- (depends on downloads)
@@ -105,8 +107,8 @@ require "follow"
 
 -- To use a custom character set for the follow hint labels un-comment and
 -- modify the following:
---local s = follow.styles
---follow.style = s.sort(s.reverse(s.charset("asdfqwerzxcv"))) -- I'm a lefty
+local s = follow.styles
+follow.style = s.sort(s.reverse(s.charset("sadfjklewcmpg"))) -- I'm a lefty
 
 -- Add command history
 require "cmdhist"
