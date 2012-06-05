@@ -37,9 +37,6 @@
 [submodule ".vim/bundle/ctrlp"]
 	path = .vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule ".vim/bundle/phpDocumentor"]
-	path = .vim/bundle/phpDocumentor
-	url = https://github.com/vim-scripts/PDV--phpDocumentor-for-Vim.git
 [submodule ".vim/bundle/align"]
 	path = .vim/bundle/align
 	url = https://github.com/vim-scripts/Align.git
@@ -67,3 +64,6 @@
 [submodule ".vim/bundle/yankring"]
 	path = .vim/bundle/yankring
 	url = https://github.com/vim-scripts/YankRing.vim.git
+[submodule ".vim/bundle/vip"]
+	path = .vim/bundle/vip
+	url = https://github.com/tobyS/vip.git
