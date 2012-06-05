@@ -61,7 +61,7 @@ static Key keys[] = {
   { Mod4Mask,                     XK_space,      spawn,      {.v = dmenucmd } },
   { Mod4Mask,                     XK_Return, spawn,          {.v = termcmd } },
   { Mod4Mask,                     XK_p,      spawn,          {.v = padcmd } },
-  { Mod4Mask,                     XK_b,      spawn,          SHCMD("exec google-chrome") },
+  { Mod4Mask,                     XK_b,      spawn,          SHCMD("exec google-chrome --proxy-server=\"socks://localhost:9050\"") },
   {      0,                       XK_Print,  spawn,          SHCMD("exec scrot -q 100 -t 25 '%Y-%m-%d-%H-%M-%S.jpg' -e 'mv $f $m /ntfs-data/inbox/tmp/screenshots'") },
   //map media functions for 7818u
   {      0,                       0x1008ff12,spawn,          {.v = soundMute } },
