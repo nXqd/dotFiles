@@ -24,7 +24,7 @@
 "       -> gist
 "       -> ctrlP
 "    -> Languages
-"       -> Python section
+"       -> C/AL section
 "       -> PHP section
 "       -> JavaScript section
 "       -> HTML section
@@ -394,22 +394,18 @@ let g:ctrlp_map = '<leader>f'
 " => Languages
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""
+" => C/AL section
+
 " => PHP section
-""""""""""""""""""""""""""""""
 au FileType php map <leader>r :!php %<CR>
 au FileType php set omnifunc=phpcomplete#CompletePHP
 
-""""""""""""""""""""""""""""""
 " => HTML section
-""""""""""""""""""""""""""""""
 if os=="win"
     nmap <silent> <Leader>b :!start C:\Users\Administrator\AppData\Local\Google\Chrome SxS\Application\chrome.exe %
 else
     nmap <silent> <Leader>b :!google-chrome % &
 endif
 
-""""""""""""""""""""""""""""""
 " => CSS section
-""""""""""""""""""""""""""""""
 au FileType css set omnifunc=csscomplete#CompleteCSS
