@@ -395,7 +395,11 @@ let g:ctrlp_map = '<leader>f'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " => C/AL section
+<<<<<<< HEAD
 au FileType cal set filetype=cal.vb
+=======
+au FileType cal set filetype=vb.cal
+>>>>>>> b6928786af439d18c93ed7f38191bb0a1328cdeb
 
 " => PHP section
 au FileType php map <leader>r :!php %<CR>
