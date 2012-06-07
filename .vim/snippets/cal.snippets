@@ -1,32 +1,88 @@
+# objj
+snippet objj
+	OBJECT Codeunit ${1:ObjectNumber} ${2:ObjectName}
+	{
+	  OBJECT-PROPERTIES
+	  {
+		Date=06-06-12;
+		Time=08:39:11;
+		Modified=Yes;
+		Version List=${3:xNDQ};
+	  }
+	  PROPERTIES
+	  {
+		OnRun=VAR
+				dummy@1000 : Code[10];
+			  BEGIN
+			  END;
+
+	  }
+	  CODE
+	  {
+		VAR
+		  ${4:globalVariable}@1000 : Integer;
+
+		PROCEDURE Function@1(${5:parameter}@1000 : Text[80]);
+		VAR
+		  ${6:privateVariable}@1001 : Integer;
+		BEGIN
+		END;
+		//
+		// ${7: functionName}
+		//
+		BEGIN
+		END.
+	  }
+	}
 # for
 snippet for
-	for i:=1 to {1:count} do
-		{2:code}
+	for i:=1 to $${1:count} do
+		$${2://code}
 # forr
 snippet forr
-	for i:=1 to {1:count} do begin
-		{2:code}
+	for i:=1 to $${1:count} do begin
+		${2://code}
 	end;
 # iff
 snippet iff
-	if ({1:condition}) then begin
-		{2:code}
+	if (${1:condition}) then begin
+		${2://code}
 	end;
 # if
 snippet if
-	if ({1:condition}) then
-		{2:code}
+	if (${1:condition}) then
+		${2://code}
 # while
 snippet while
-	while ({1:condition}) then
-		{2:code}
+	while (${1:condition}) then
+		${2://code}
 # whilee
 snippet whilee
-	while ({1:condition}) then begin
-		{2:code}
+	while (${1:condition}) then begin
+		${2://code}
 	end;
 # case
-	case {1} of
-		{2:case1} : begin
+snippet case
+	case ${1} of
+		${2:case1} : begin
 		end;
 	end;
+# comment
+snippet //
+	//
+	// ${1: Functionname}
+	//
+# function
+snippet fun
+	PROCEDURE ${1:functionName}@${2:functionNumber}(${3:parameter@1000 : Text[80]});
+	VAR
+	  ${4:privateVariable}@1001 : Integer;
+	BEGIN
+	//
+	// ${5: functionName}
+	// END;
+# IsClear
+snippet isclear
+	If ISCLEAR(${1:objName}) then
+		If not CREATE(${2:objName}) then
+			Error('Cannot create ADO Connection automation variable.');
