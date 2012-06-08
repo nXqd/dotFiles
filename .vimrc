@@ -101,11 +101,9 @@ if has("win32")
     let os="win"
   else
     if has("unix")
-      let s:uname = system("uname")
-      if s:uname == "Darwin"
-        let os="mac"
-      else
         let os="unix"
+      if system('uname')=~'Darwin'
+        let os="mac"
       endif
     endif
 endif
