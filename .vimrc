@@ -13,6 +13,7 @@
 "    -> Statusline
 "    -> Shortcuts
 "    -> Cope
+"    -> Functions
 "
 "    -> Plugins
 "       -> pathogen                                         : Help manage runtime path
@@ -167,18 +168,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove trailing spaces
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
 	" Auto remove when saving
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
@@ -196,25 +185,6 @@ vnoremap <silent> gv :call VisualSearch('gv')<CR>
 " Replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
-" from an idea by michael naumann
-function! VisualSearch(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
@@ -229,26 +199,20 @@ map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 map <space> /
 map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
-
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
 " buffer delete
 map <leader>bd :bdelete<cr>
-
 " buffer close
 map <leader>bc :Bclose<cr>
-
 " close all buffers
 map <leader>ba :1,300 bd!<cr>
-
 " Use the arrows to something usefull
 map <right> :bn<cr>
 map <left> :bp<cr>
-
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
 
@@ -273,11 +237,8 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 " Specify the behavior when switching between buffers
-try
-    set switchbuf=usetab
-    set stal=2
-catch
-endtry
+set switchbuf=usetab
+set stal=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Statusline
@@ -317,24 +278,23 @@ vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Brackets expanding
-let preBracket="`"
+let bracketPrefix="`"
 if os=="mac"
-  let preBracket="$"
+  let bracketPrefix="$"
 endif
 
-exe 'vnoremap' . preBracket . '1 <esc>`>a)<esc>`<i(<esc>'
-exe 'vnoremap' . preBracket . '2 <esc>`>a]<esc>`<i[<esc>'
-exe 'vnoremap' . preBracket . '3 <esc>`>a}<esc>`<i{<esc>'
-exe 'vnoremap' . preBracket . '$ <esc>`>a"<esc>`<i"<esc>'
-exe 'vnoremap' . preBracket . 'q <esc>`>a''<esc>`<i''<esc>'
-exe 'vnoremap' . preBracket . 'e <esc>`>a"<esc>`<i"<esc>'
-" Map auto complete of (, ", ', [
-exe 'inoremap ' . preBracket . '1 ()<esc>i'
-exe 'inoremap ' . preBracket . '2 []<esc>i'
-exe 'inoremap ' . preBracket . '3 {}<esc>i'
-exe 'inoremap ' . preBracket . '4 {<esc>o}<esc>O'
-exe 'inoremap ' . preBracket . 'q ''''<esc>i'
-exe 'inoremap ' . preBracket . 'e ""<esc>i'
+exe 'vnoremap' . bracketPrefix . '1 <esc>`>a)<esc>`<i(<esc>'
+exe 'vnoremap' . bracketPrefix . '2 <esc>`>a]<esc>`<i[<esc>'
+exe 'vnoremap' . bracketPrefix . '3 <esc>`>a}<esc>`<i{<esc>'
+exe 'vnoremap' . bracketPrefix . '$ <esc>`>a"<esc>`<i"<esc>'
+exe 'vnoremap' . bracketPrefix . 'q <esc>`>a''<esc>`<i''<esc>'
+exe 'vnoremap' . bracketPrefix . 'e <esc>`>a"<esc>`<i"<esc>'
+exe 'inoremap' . bracketPrefix . '1 ()<esc>i'
+exe 'inoremap' . bracketPrefix . '2 []<esc>i'
+exe 'inoremap' . bracketPrefix . '3 {}<esc>i'
+exe 'inoremap' . bracketPrefix . '4 {<esc>o}<esc>O'
+exe 'inoremap' . bracketPrefix . 'q ''''<esc>i'
+exe 'inoremap' . bracketPrefix . 'e ""<esc>i'
 
 " Map to enter ; end of line
 inoremap <leader>; <esc>A;
@@ -349,6 +309,42 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 " map <leader>cc :botright cope<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove trailing spaces
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+" from an idea by michael naumann
+function! VisualSearch(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
