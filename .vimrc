@@ -51,33 +51,24 @@ set fileencoding=utf8 nobomb
 set fileformats=unix,dos,mac
 " Slash
 set shellslash                    " Use / instead of \ in Windows
-
-set scrolloff=7                   " Set 7 lines to the curors - when moving vertical..
 set wildmenu                      " Turn on WiLd menu
-set ruler                         " Always show current position
-set cmdheight=1                   " The commandbar height
 set hidden                        " Change buffer - without saving
 set relativenumber
 set cursorline
-
 " Set backspace config
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
-
 " Search
 set ignorecase                 " Ignore case when searching
 set smartcase
 set hlsearch                   " Highlight search things
 set incsearch                  " Make search act like search in modern browsers
-set nolazyredraw
 set magic                      " Set magic on, for regular expressions
 set showmatch                  " Show matching bracets when text indicator is over them
 set history=50
-
 " display indentation guides
 set shiftwidth=2
 set tabstop=2
@@ -86,49 +77,28 @@ set expandtab
 set linebreak
 set autoindent
 set smartindent
-
 " keep your code clean and easy to read
 set textwidth=120
 set wrap
-
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
 set nowb
 set noswapfile
-
 " Get running OS
-let os = ""
-if has("win32")
-    let os="win"
-  else
-    if has("unix")
-        let os="unix"
-      if system('uname')=~'Darwin'
-        let os="mac"
-      endif
-    endif
-endif
-
+let os=GetRunningOS()
 " Undo
 set undofile
-try
-    if os=="win"
-        set undodir=C:\Windows\Temp
-    else
-        set undodir=~/.vim_runtime/undodir
-    endif
-catch
-endtry
-
-
-
+if os=="win"
+  set undodir=C:\Windows\Temp
+else
+  set undodir=~/.vim_runtime/undodir
+endif
 " edit vimrc according to os
 if os=="win"
-    map <leader>rc :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
+    map <leader>rc :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc<CR>
 else
-    map <leader>rc :e! ~/.vimrc<cr>
+    map <leader>rc :e! ~/.vimrc<CR>
 endif
-
 " autoreload vimrc config
 if os=="win"
     au! bufwritepost _vimrc source D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
@@ -139,20 +109,12 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Invisible character colors
-highlight NonText guifg=#dddddd
-highlight SpecialKey guifg=#dddddd
-
 " enable syntax highlight
 syntax enable
-
 " Set font according to system
 if os=="win"
-    set gfn=Consolas:h10
     set shell=cmd.exe
 else
-    set gfn=Consolas:h12
     set shell=/bin/zsh
 endif
 " Gvim
@@ -162,6 +124,7 @@ if has("gui_running")
     set guioptions-=r  "remove right-hand scroll bar
     set guioptions-=l  "remove left-hand scroll bar
     set background=dark
+    set guifont=Consolas:h10
     colorscheme solarized
 endif
 
@@ -170,7 +133,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 	" Auto remove when saving
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
@@ -184,7 +146,6 @@ vnoremap <silent> gv :call VisualSearch('gv')<CR>
 
 " Replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
@@ -217,25 +178,6 @@ map <left> :bp<cr>
 map <leader>cd :cd %:p:h<cr>
 
 command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
-
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
-
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
-endfunction
-
 " Specify the behavior when switching between buffers
 set switchbuf=usetab
 set stal=2
@@ -243,17 +185,13 @@ set stal=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Statusline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has('statusline')
-  set laststatus=2
-
-  " Broken down into easily includeable segments
-  set statusline=%<%f\    " Filename
-  set statusline+=%w%h%m%r " Options
-  set statusline+=%{fugitive#statusline()} "  Git Hotness
-  set statusline+=\ [%{&ff}/%Y]            " filetype
-  set statusline+=\ [%{getcwd()}]          " current dir
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
+set laststatus=2
+set statusline=%<%f\    " Filename
+set statusline+=%w%h%m%r " Options
+set statusline+=%{fugitive#statusline()} "  Git Hotness
+set statusline+=\ [%{&ff}/%Y]            " filetype
+set statusline+=\ [%{getcwd()}]          " current dir
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Shortcuts
@@ -346,6 +284,40 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
+"Get current running OS - Vim terminal
+function! GetRunningOS()
+  let s:os = ""
+  if has("win32")
+    return "win"
+  endif
+  if has("unix")
+    if system('uname')=~'Darwin'
+      return "mac"
+    else
+      return "unix"
+    endif
+  endif
+endfunction
+"Buffer close
+function! <SID>BufcloseCloseIt()
+    let l:currentBufNum = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
+
+    if buflisted(l:alternateBufNum)
+        buffer #
+    else
+        bnext
+    endif
+
+    if bufnr("%") == l:currentBufNum
+        new
+    endif
+
+    if buflisted(l:currentBufNum)
+        execute("bdelete! ".l:currentBufNum)
+    endif
+endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -396,11 +368,6 @@ au FileType php map <leader>r :!php %<CR>
 au FileType php set omnifunc=phpcomplete#CompletePHP
 
 " => HTML section
-if os=="win"
-    nmap <silent> <Leader>b :!start C:\Users\Administrator\AppData\Local\Google\Chrome SxS\Application\chrome.exe %
-else
-    nmap <silent> <Leader>b :!google-chrome % &
-endif
 
 " => CSS section
 au FileType css set omnifunc=csscomplete#CompleteCSS
