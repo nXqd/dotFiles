@@ -119,10 +119,7 @@ else
 endif
 " Gvim
 if has("gui_running")
-    set guioptions-=m  "remove menu bar
-    set guioptions-=T  "remove toolbar
-    set guioptions-=r  "remove right-hand scroll bar
-    set guioptions-=l  "remove left-hand scroll bar
+    set guioptions-=mTrl  "remove menu bar
     set background=dark
     set guifont=Consolas:h10
     colorscheme solarized
@@ -286,7 +283,6 @@ endfunction
 
 "Get current running OS - Vim terminal
 function! GetRunningOS()
-  let s:os = ""
   if has("win32")
     return "win"
   endif
