@@ -11,11 +11,6 @@ alias -s pdf='mupdf'
 alias -s chm='xchm'
 alias -s {rar,zip,7z,tar}='x' #function in .zsh/functs
 alias -s {txt,lua,php,js,css,cal}='vim'
-# The git family
-alias gs='git status'
-alias gc='git commit'
-alias ga='git add'
-alias gp='git push'
 # Archlinux - pacman family
 alias p='sudo pacman'
 alias pc='sudo pacman -Rsn $(pacman -Qdtq)'
