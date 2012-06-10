@@ -2,43 +2,28 @@
 # aliases
 # zsh shortcuts for ninja
 ##########################
-
 #Auto open files
 alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}='feh'
 alias -s {mpg,mpeg,avi,ogm,ogv,wmv,m4v,mp4,mov,f4v,mkv}='mplayer'
 alias -s {mp3,ogg,wav,flac}='ncmpcpp'
-alias -s {html,php,com,net,org,gov}='chromium-browser'
-alias -s pdf='zathura'
+alias -s {html,com,net,org,gov}='google-chrome'
+alias -s pdf='mupdf'
 alias -s chm='xchm'
 alias -s {rar,zip,7z,tar}='x' #function in .zsh/functs
-alias -s {txt}='vim'
-
-# The 'cd' family ------------
-alias -g ~='cd ~'
-alias -g ..='cd ..'
-alias -g ...='cd ../..'
-alias -g ....='cd ../../..'
-alias -g .....='cd ../../../..'
-
+alias -s {txt,lua,php,js,css,cal}='vim'
 # The git family
 alias gs='git status'
 alias gc='git commit'
 alias ga='git add'
 alias gp='git push'
-
 # Archlinux - pacman family
 alias p='sudo pacman'
 alias pc='sudo pacman -Rsn $(pacman -Qdtq)'
-
 # Command
-alias s='sudo'
 alias cp='cp -i -r'
 alias mv='mv -i'
-alias md='mkdir -p'
 alias gr='grep --color=auto'
-alias sd='shutdown -h now'
-alias ws='sudo wifi-select wlan0'
-
+alias ws='_ wifi-select wlan0'
 # Fav folders
 dataFolder='/mnt/data'
 alias inbox='cd ${dataFolder}/inbox'
@@ -46,15 +31,11 @@ alias book='cd ${dataFolder}/Dropbox/book/'
 alias dev='cd ${dataFolder}/dev'
 alias build='cd ~/.build/'
 alias cw='/srv/http/'
-
 #Tweak application default running mode
 alias p='packer'
 alias scrot='scrot -q100'
 alias urxvt='urxvtc&'
 alias gimp='gimp&exit'
-alias vifm='vifm .'
-
 #Editor
 alias v='vim'
-
 # vim: set ts=2:sw=2:tw=120:
