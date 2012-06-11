@@ -14,27 +14,12 @@
 "    -> Shortcuts
 "    -> Cope
 "    -> Functions
-"
 "    -> Plugins
-"       -> pathogen                                         : Help manage runtime path
-"       -> NERDTree plugin
-"       -> MRU
-"       -> cTags plugins
-"       -> Matchit                                          : extends % for various Languages
-"       -> php-doc
-"       -> gist
-"       -> ctrlP
 "    -> Languages
-"       -> C/AL section
-"       -> PHP section
-"       -> JavaScript section
-"       -> HTML section
-"       -> CSS section
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Run pathogen before hand
 call pathogen#infect()
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -42,6 +27,10 @@ call pathogen#infect()
 " Remap leader
 let g:mapleader = ","
 
+" Speed up vim
+set lazyredraw
+set synmaxcol=128
+" We are not accient
 set nocompatible
 " No sound on errors
 set noerrorbells
@@ -51,7 +40,8 @@ set fileencoding=utf8 nobomb
 set fileformats=unix,dos,mac
 " Slash
 set shellslash                    " Use / instead of \ in Windows
-set wildmenu                      " Turn on WiLd menu
+set wildmenu
+set wildignore
 set hidden                        " Change buffer - without saving
 set relativenumber
 set cursorline
@@ -120,6 +110,9 @@ endif
 " Gvim
 if has("gui_running")
     set guioptions-=mTrl  "remove menu bar
+    set guioptions-=T     "remove tool bar
+    set guioptions-=r     "remove left scroll
+    set guioptions-=l     "remove right scroll
     set background=dark
     set guifont=Consolas:h10
     colorscheme solarized
@@ -355,15 +348,7 @@ let g:ctrlp_map = '<leader>f'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Languages
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" => C/AL section
+" C/AL
 au FileType cal set filetype=cal.vb
-
-" => PHP section
-au FileType php map <leader>r :!php %<CR>
-au FileType php set omnifunc=phpcomplete#CompletePHP
-
-" => HTML section
-
-" => CSS section
-au FileType css set omnifunc=csscomplete#CompleteCSS
+" PHP
+autocmd FileType php map <leader>r !php %
