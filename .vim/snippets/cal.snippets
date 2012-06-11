@@ -88,3 +88,54 @@ snippet isclear
 	If ISCLEAR(${1:objName}) then
 		If not CREATE(${2:objName}) then
 			Error('Cannot create ADO Connection automation variable.');
+# Util - window progress function
+snippet fwindowprogress
+	currentProgress := 0;
+	dlgProgress.OPEN('@1@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\#2##############################', progressPercent, progressDetail);
+	progressTotal := 1000000;
+	timeProgress := TIME;
+	REPEAT
+	// Progress bar
+	currentProgress += 1;
+	IF timeProgress < TIME - 1000 THEN BEGIN // every second
+		timeProgress := TIME;
+		progressPercent := ROUND(currentProgress / progressTotal * 10000,1);
+		dlgProgress.UPDATE;
+	END;
+	// some processing
+	UNTIL currentProgress = progressTotal;
+# Util - log duration
+snippet flog
+	PROCEDURE LogDuration@${1:functionNumber}(task@1000 : Text[80];duration@1003 : Duration);
+	VAR
+	  file@1001 : File;
+	  output@1002 : Text[250];
+	  logPath@1004 : Text[100];
+	BEGIN
+	  //
+	  // Log duration of current running task for using later
+	  // @task text
+	  // @duration Duration
+	  // @output the status string to txt file
+	  //
+
+	  file.TEXTMODE(TRUE);
+	  file.WRITEMODE(TRUE);
+
+	  logPath := ${2:logPath};
+	  IF EXISTS(logPath) THEN
+		file.OPEN(logPath);
+		IF (file.LEN > 0) THEN
+		  file.SEEK(file.LEN)
+	  ELSE
+		file.CREATE(logPath);
+
+	  //output
+	  output  := FORMAT(TODAY) + ' / ';
+	  output  += FORMAT(TIME) + ' / ';
+	  output  += task + ' / ';
+	  output  += FORMAT(duration);
+	  file.WRITE(output);
+
+	  file.CLOSE;
+	END;
