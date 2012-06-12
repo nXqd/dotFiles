@@ -150,20 +150,14 @@ let os=GetRunningOS()
 set undofile
 if os=="win"
   set undodir=C:\Windows\Temp
+  map <leader>rc :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc<CR>
+  au! bufwritepost _vimrc source D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
+  set shell=cmd.exe
 else
-  set undodir=~/.vim_runtime/undodir
-endif
-" edit vimrc according to os
-if os=="win"
-    map <leader>rc :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc<CR>
-else
-    map <leader>rc :e! ~/.vimrc<CR>
-endif
-" autoreload vimrc config
-if os=="win"
-    au! bufwritepost _vimrc source D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
-else
-    au! bufwritepost .vimrc source ~/.vimrc
+  set undodir=~/.vim/undodir
+  map <leader>rc :e! ~/.vimrc<CR>
+  au! bufwritepost .vimrc source ~/.vimrc
+  set shell=/bin/zsh
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -171,12 +165,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " enable syntax highlight
 syntax enable
-" Set font according to system
-if os=="win"
-    set shell=cmd.exe
-else
-    set shell=/bin/zsh
-endif
 " Gvim
 if has("gui_running")
     set guioptions-=m     "remove menu bar
