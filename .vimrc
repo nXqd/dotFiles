@@ -240,19 +240,11 @@ set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 nmap <leader>w : w!<cr>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
-" map select all text to C-A
-noremap <C-A> ggVG
 " Map copy and paste with system clipboard register
 map <C-y> "+y
 vmap <C-y> "+y
 map <C-p> "+p
 vmap <C-p> "+p
-"Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
 " Brackets expanding
 let bracketPrefix="`"
 if os=="mac"
