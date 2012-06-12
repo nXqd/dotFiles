@@ -67,3 +67,6 @@
 [submodule ".vim/bundle/vip"]
 	path = .vim/bundle/vip
 	url = https://github.com/tobyS/vip.git
+[submodule ".vim/bundle/matchit"]
+	path = .vim/bundle/matchit
+	url = https://github.com/edsono/vim-matchit.git

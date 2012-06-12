@@ -34,7 +34,6 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-
 " from an idea by michael naumann
 function! VisualSearch(direction) range
     let l:saved_reg = @"
@@ -54,7 +53,6 @@ function! VisualSearch(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
 "Buffer close
 function! <SID>BufcloseCloseIt()
     let l:currentBufNum = bufnr("%")
@@ -90,7 +88,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Remap leader
 let g:mapleader = ","
 
@@ -152,14 +149,12 @@ endif
 " edit vimrc according to os
 if os=="win"
     map <leader>rc :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc<CR>
+    au! bufwritepost _vimrc source D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
+    set shell=cmd.exe
 else
     map <leader>rc :e! ~/.vimrc<CR>
-endif
-" autoreload vimrc config
-if os=="win"
-    au! bufwritepost _vimrc source D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
-else
     au! bufwritepost .vimrc source ~/.vimrc
+    set shell=/bin/zsh
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -167,12 +162,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " enable syntax highlight
 syntax enable
-" Set font according to system
-if os=="win"
-    set shell=cmd.exe
-else
-    set shell=/bin/zsh
-endif
 " Gvim
 if has("gui_running")
     set guioptions-=m     "remove menu bar
@@ -180,7 +169,7 @@ if has("gui_running")
     set guioptions-=r     "remove left scroll
     set guioptions-=l     "remove right scroll
     set background=dark
-    set guifont=Consolas:h10
+    set guifont=Consolas:h11
     colorscheme solarized
 endif
 
@@ -216,11 +205,6 @@ map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 map <space> /
 map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 " buffer delete
 map <leader>bd :bdelete<cr>
 " buffer close
@@ -256,8 +240,6 @@ set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 nmap <leader>w : w!<cr>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
-" quick edit file
-nmap <leader>e :e
 " map select all text to C-A
 noremap <C-A> ggVG
 " Map copy and paste with system clipboard register
@@ -281,14 +263,14 @@ exe 'vnoremap' . bracketPrefix . '1 <esc>`>a)<esc>`<i(<esc>'
 exe 'vnoremap' . bracketPrefix . '2 <esc>`>a]<esc>`<i[<esc>'
 exe 'vnoremap' . bracketPrefix . '3 <esc>`>a}<esc>`<i{<esc>'
 exe 'vnoremap' . bracketPrefix . '$ <esc>`>a"<esc>`<i"<esc>'
-exe 'vnoremap' . bracketPrefix . 'q <esc>`>a''<esc>`<i''<esc>'
-exe 'vnoremap' . bracketPrefix . 'e <esc>`>a"<esc>`<i"<esc>'
+exe 'vnoremap' . bracketPrefix . 'q <esc>`>a"<esc>`<i"<esc>'
+exe 'vnoremap' . bracketPrefix . 'e <esc>`>a''<esc>`<i''<esc>'
 exe 'inoremap' . bracketPrefix . '1 ()<esc>i'
 exe 'inoremap' . bracketPrefix . '2 []<esc>i'
 exe 'inoremap' . bracketPrefix . '3 {}<esc>i'
 exe 'inoremap' . bracketPrefix . '4 {<esc>o}<esc>O'
-exe 'inoremap' . bracketPrefix . 'q ''''<esc>i'
-exe 'inoremap' . bracketPrefix . 'e ""<esc>i'
+exe 'inoremap' . bracketPrefix . 'q ""<esc>i'
+exe 'inoremap' . bracketPrefix . 'e ''''<esc>i'
 
 " Map to enter ; end of line
 inoremap <leader>; <esc>A;
