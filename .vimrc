@@ -178,12 +178,12 @@ else
 endif
 " Gvim
 if has("gui_running")
-    set guioptions-=mTrl  "remove menu bar
+    set guioptions-=m     "remove menu bar
     set guioptions-=T     "remove tool bar
     set guioptions-=r     "remove left scroll
     set guioptions-=l     "remove right scroll
     set background=dark
-    set guifont=Consolas:h10
+    set guifont=Consolas:h11
     colorscheme solarized
 endif
 
@@ -219,11 +219,6 @@ map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 map <space> /
 map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 " buffer delete
 map <leader>bd :bdelete<cr>
 " buffer close
@@ -259,8 +254,6 @@ set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 nmap <leader>w : w!<cr>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
-" quick edit file
-nmap <leader>e :e
 " map select all text to C-A
 noremap <C-A> ggVG
 " Map copy and paste with system clipboard register
