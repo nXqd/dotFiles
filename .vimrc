@@ -284,14 +284,14 @@ exe 'vnoremap' . bracketPrefix . '1 <esc>`>a)<esc>`<i(<esc>'
 exe 'vnoremap' . bracketPrefix . '2 <esc>`>a]<esc>`<i[<esc>'
 exe 'vnoremap' . bracketPrefix . '3 <esc>`>a}<esc>`<i{<esc>'
 exe 'vnoremap' . bracketPrefix . '$ <esc>`>a"<esc>`<i"<esc>'
-exe 'vnoremap' . bracketPrefix . 'q <esc>`>a''<esc>`<i''<esc>'
-exe 'vnoremap' . bracketPrefix . 'e <esc>`>a"<esc>`<i"<esc>'
+exe 'vnoremap' . bracketPrefix . 'q <esc>`>a"<esc>`<i"<esc>'
+exe 'vnoremap' . bracketPrefix . 'e <esc>`>a''<esc>`<i''<esc>'
 exe 'inoremap' . bracketPrefix . '1 ()<esc>i'
 exe 'inoremap' . bracketPrefix . '2 []<esc>i'
 exe 'inoremap' . bracketPrefix . '3 {}<esc>i'
 exe 'inoremap' . bracketPrefix . '4 {<esc>o}<esc>O'
-exe 'inoremap' . bracketPrefix . 'q ''''<esc>i'
-exe 'inoremap' . bracketPrefix . 'e ""<esc>i'
+exe 'inoremap' . bracketPrefix . 'q ""<esc>i'
+exe 'inoremap' . bracketPrefix . 'e ''''<esc>i'
 
 " Map to enter ; end of line
 inoremap <leader>; <esc>A;
