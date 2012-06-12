@@ -111,6 +111,7 @@ set fileformats=unix,dos,mac
 set shellslash                    " Use / instead of \ in Windows
 set wildmenu
 set wildignorecase
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.rar,*.tar.*
 set hidden                        " Change buffer - without saving
 set relativenumber
 set cursorline
