@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="wedisagree"
+ZSH_THEME="alanpeabody"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -27,18 +27,19 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git vi-mode node git-flow extract brew battery)
 
-# Input method
-export XMODIFIERS="@im=ibus"
-export GTK_IM_MODULE="ibus"
-export QT_IM_MODULE="ibus"
-
-# Customized stuffs
-. ~/.zsh/aliases
-. ~/.zsh/functs
-. ~/.zsh/configs
-
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 # PATHS
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/usr/share/pear
+# Input method
+export XMODIFIERS="@im=ibus"
+export GTK_IM_MODULE="ibus"
+export QT_IM_MODULE="ibus"
+# Editor
+export EDITOR="vim"
+# Customized stuffs
+. ~/.zsh/aliases
+. ~/.zsh/functs
+. ~/.zsh/configs
+

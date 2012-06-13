@@ -1,8 +1,6 @@
 " Original author: amix.dk
 " Modified by nXqd
-" Update:
-"
-" Sections:
+" Construct
 "    -> General
 "    -> Colors and Fonts
 "    -> Files and backups
@@ -20,6 +18,7 @@
 
 " Run pathogen before hand
 call pathogen#infect()
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -35,7 +34,6 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-
 " from an idea by michael naumann
 function! VisualSearch(direction) range
     let l:saved_reg = @"
@@ -55,21 +53,6 @@ function! VisualSearch(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
-"Get current running OS - Vim terminal
-function! GetRunningOS()
-  if has("win32")
-    return "win"
-  endif
-  if has("unix")
-    if system('uname')=~'Darwin'
-      return "mac"
-    else
-      return "unix"
-    endif
-  endif
-endfunction
-
 "Buffer close
 function! <SID>BufcloseCloseIt()
     let l:currentBufNum = bufnr("%")
@@ -89,7 +72,19 @@ function! <SID>BufcloseCloseIt()
         execute("bdelete! ".l:currentBufNum)
     endif
 endfunction
-
+" Get running OS
+function! GetRunningOS()
+  if has("win32")
+    return "win"
+  endif
+  if has("unix")
+    if system('uname')=~'Darwin'
+      return "mac"
+    else
+      return "unix"
+    endif
+  endif
+endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -144,7 +139,6 @@ set wrap
 set nobackup
 set nowb
 set noswapfile
-" Get running OS
 let os=GetRunningOS()
 " Undo
 set undofile
@@ -158,6 +152,7 @@ else
   map <leader>rc :e! ~/.vimrc<CR>
   au! bufwritepost .vimrc source ~/.vimrc
   set shell=/bin/zsh
+  set undodir=~/.vim_runtime/undodir
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -243,19 +238,11 @@ set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 nmap <leader>w : w!<cr>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
-" map select all text to C-A
-noremap <C-A> ggVG
 " Map copy and paste with system clipboard register
 map <C-y> "+y
 vmap <C-y> "+y
 map <C-p> "+p
 vmap <C-p> "+p
-"Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
 " Brackets expanding
 let bracketPrefix="`"
 if os=="mac"
