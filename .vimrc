@@ -166,10 +166,10 @@ if has("gui_running")
     set guioptions-=T     "remove tool bar
     set guioptions-=r     "remove left scroll
     set guioptions-=l     "remove right scroll
-    set background=dark
     set guifont=Consolas:h11
-    colorscheme solarized
 endif
+colorscheme solarized
+set background=dark
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
