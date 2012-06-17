@@ -48,7 +48,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[]       = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]        = { "urxvtc", NULL };
+static const char *termcmd[]         = { "urxvtc", "-e", "zsh", "-c", "tmux", NULL };
 static const char *padcmd[]         = { "urxvtc", "-title", "scratchpad", "-geometry", "54x10+504+12", NULL };
 static const char *soundMute[]      = { "amixer", "set", "Master", "toggle", NULL };
 static const char *soundUp[]        = { "amixer", "set", "Master", "2+", NULL };
