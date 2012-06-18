@@ -72,7 +72,9 @@ endfunction
 let os=GetRunningOS()
 " Remap leader
 let g:mapleader = ","
-
+" work with unicode by default
+set encoding=utf-8
+setglobal fileencoding=utf-8
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
