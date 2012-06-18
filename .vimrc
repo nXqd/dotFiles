@@ -53,25 +53,6 @@ function! VisualSearch(direction) range
   let @/ = l:pattern
   let @" = l:saved_reg
 endfunction
-"Buffer close
-function! <SID>BufcloseCloseIt()
-  let l:currentBufNum = bufnr("%")
-  let l:alternateBufNum = bufnr("#")
-
-  if buflisted(l:alternateBufNum)
-    buffer #
-  else
-    bnext
-  endif
-
-  if bufnr("%") == l:currentBufNum
-    new
-  endif
-
-  if buflisted(l:currentBufNum)
-    execute("bdelete! ".l:currentBufNum)
-  endif
-endfunction
 " Get running OS
 function! GetRunningOS()
   if has("win32")
@@ -88,71 +69,77 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let os=GetRunningOS()
 " Remap leader
 let g:mapleader = ","
 
+" Don’t add empty newlines at the end of files
+set binary
+set noeol
+" Scroll 3 lines
+set scrolloff=3
+" We are not accient
+set nocompatible
+" Show “invisible” characters
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set list
+" Use system clipboard by default
+set clipboard=unnamed
 " Speed up vim
 set lazyredraw
 set synmaxcol=128
-" We are not accient
-set nocompatible
-" No sound on errors
-set noerrorbells
-set novisualbell
-" File default format
-set fileencoding=utf8 nobomb
-set fileformats=unix,dos,mac
+set ttyfast
 " Slash
 set shellslash                    " Use / instead of \ in Windows
 set wildmenu
 set wildignorecase
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.rar,*.tar.*
 set hidden                        " Change buffer - without saving
+" Move to exact place you want
 set relativenumber
 set cursorline
 " Set backspace config
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
+" Mouse in all mode
+set mouse=a
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
 " Search
-set ignorecase                 " Ignore case when searching
+set ignorecase
 set smartcase
-set hlsearch                   " Highlight search things
-set incsearch                  " Make search act like search in modern browsers
-set magic                      " Set magic on, for regular expressions
-set showmatch                  " Show matching bracets when text indicator is over them
+set hlsearch
+set incsearch
+" magic for regex search
+set magic
+" Number of commands store
 set history=50
-" display indentation guides
-set shiftwidth=2
+" tab settings
 set tabstop=2
 set smarttab
 set expandtab
-set linebreak
+" indentation
 set autoindent
 set smartindent
 " keep your code clean and easy to read
+set linebreak
 set textwidth=120
-set wrap
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
 set nowb
 set noswapfile
-let os=GetRunningOS()
 " Undo
 set undofile
 if os=="win"
   set undodir=C:\Windows\Temp
   map <leader>rc :e! D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc<CR>
   au! bufwritepost _vimrc source D:\Dropbox\apps\gVimPortable\Data\settings\_vimrc
-  set shell=cmd.exe
+  set shell=powershell.exe
 else
   set undodir=~/.vim/undodir
   map <leader>rc :e! ~/.vimrc<CR>
   au! bufwritepost .vimrc source ~/.vimrc
-  set shell=/bin/zsh
-  set undodir=~/.vim_runtime/undodir
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -201,21 +188,10 @@ map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " Map space to / (search) and c-space to ? (backgwards search)
 map <space> /
-map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
-" buffer delete
-map <leader>bd :bdelete<cr>
-" buffer close
-map <leader>bc :Bclose<cr>
-" close all buffers
-map <leader>ba :1,300 bd!<cr>
-" Use the arrows to something usefull
-map <right> :bn<cr>
-map <left> :bp<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
 
-command! Bclose call <SID>BufcloseCloseIt()
 " Specify the behavior when switching between buffers
 set switchbuf=usetab
 set stal=2
@@ -234,10 +210,8 @@ set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" quick save file
-nmap <leader>w : w!<cr>
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
+" W to save as root
+cnoremap W w !sudo tee % > /dev/null
 " Map copy and paste with system clipboard register
 map <C-y> "+y
 vmap <C-y> "+y
@@ -272,7 +246,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -291,10 +264,6 @@ map <leader>s? z=
 " NERDTree plugin
 map <leader>o :NERDTreeToggle<cr>
 let g:NERDTreeDirArrows=0
-
-" MRU blugin
-"let MRU_Max_Entries = 400
-"map <leader>r :MRU<CR>
 
 " YankRing
 map <leader>y :YRShow<CR>=
@@ -318,5 +287,3 @@ let g:ctrlp_map = '<leader>f'
 au FileType cal set filetype=cal.vb
 " PHP
 autocmd FileType php map <leader>r !php %
-
-" vim: ts=2:sw=2
