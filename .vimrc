@@ -245,10 +245,6 @@ map <C-p> "+p
 vmap <C-p> "+p
 " Brackets expanding
 let bracketPrefix="`"
-if os=="mac"
-  let bracketPrefix="$"
-endif
-
 exe 'vnoremap' . bracketPrefix . '1 <esc>`>a)<esc>`<i(<esc>'
 exe 'vnoremap' . bracketPrefix . '2 <esc>`>a]<esc>`<i[<esc>'
 exe 'vnoremap' . bracketPrefix . '3 <esc>`>a}<esc>`<i{<esc>'
