@@ -8,13 +8,6 @@ mkcd () {
 # Task timer
 t () {
   text=$2
-  _beep() {
-    for i in {1..$1}
-    do
-      echo -en "\007"
-      sleep 1
-    done
-  }
 
   _timer() {
     counter=0
@@ -35,27 +28,24 @@ t () {
       echo "Pomodoro Task: $text"
       echo "  Work time - $workTime minutes"
       _timer $workTime
-      _beep 2
+      beep -l100 -r3
 
       # Break time
       echo "  Break time - $breakTime minutes"
       _timer $breakTime
-      _beep 2
-
-      exit 0;
+      beep -l100 -r3
       ;;
     # Normal task
     *)
       echo "Task: $text - $1 minutes"
       _timer $1
-      _beep
-      exit 0;
+      beep -l100 -r3
       ;;
   esac
 }
 
 #commandline dictionary
-getdef(){
+dict(){
   if [[ $# -ge 2 ]] then
     echo "getdef: too many arguments" >&2
     return 1
