@@ -5,3 +5,51 @@ mkcd () {
    mkdir -p "$@" && cd "$_";
 }
 
+# Task timer
+t () {
+  text=$2
+  _beep() {
+    for i in {1..$1}
+    do
+      sleep 1
+      echo -en "\007"
+    done
+  }
+
+  _timer() {
+    counter=0
+    while [ $counter != $1 ]; do
+      echo "  ... $counter minutes";
+      sleep 60
+      let "counter = $counter+1"
+    done
+  }
+
+  case "$1" in
+    # Pomodoro task
+    p)
+      workTime=25
+      breakTime=5
+
+      # Work time
+      echo "Pomodoro Task: $text"
+      echo "  Work time - $workTime minutes"
+      _timer $workTime
+      beep 2
+
+      # Break time
+      echo "  Break time - $breakTime minutes"
+      _timer $breakTime
+      beep 2
+
+      exit 0;
+      ;;
+    # Normal task
+    *)
+      echo "Task: $text - $1 minutes"
+      _timer $1
+      beepbeep
+      exit 0;
+      ;;
+  esac
+}
