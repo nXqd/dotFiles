@@ -70,6 +70,11 @@ static Key keys[] = {
   {      0,                       0x1008ff16,spawn,          {.v = soundPrev } },
   {      0,                       0x1008ff17,spawn,          {.v = soundNext } },
 
+  // default media shortcuts
+  { Mod4Mask,                     XK_F6,     spawn,          {.v = soundMute } },
+  { Mod4Mask,                     XK_F7,     spawn,          {.v = soundDown } },
+  { Mod4Mask,                     XK_F8,     spawn,          {.v = soundUp   } },
+
   { MODKEY,                       XK_b,      togglebar,      {0} },
   { Mod1Mask,                     XK_j,      focusstack,     {.i = +1 } },
   { Mod1Mask,                     XK_k,      focusstack,     {.i = -1 } },
