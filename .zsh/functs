@@ -11,8 +11,8 @@ t () {
   _beep() {
     for i in {1..$1}
     do
-      sleep 1
       echo -en "\007"
+      sleep 1
     done
   }
 
@@ -35,12 +35,12 @@ t () {
       echo "Pomodoro Task: $text"
       echo "  Work time - $workTime minutes"
       _timer $workTime
-      beep 2
+      _beep 2
 
       # Break time
       echo "  Break time - $breakTime minutes"
       _timer $breakTime
-      beep 2
+      _beep 2
 
       exit 0;
       ;;
@@ -48,8 +48,18 @@ t () {
     *)
       echo "Task: $text - $1 minutes"
       _timer $1
-      beepbeep
+      _beep
       exit 0;
       ;;
   esac
+}
+
+#commandline dictionary
+getdef(){
+  if [[ $# -ge 2 ]] then
+    echo "getdef: too many arguments" >&2
+    return 1
+  else
+    curl "dict://dict.org/d:$1"
+  fi
 }
