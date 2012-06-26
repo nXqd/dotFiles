@@ -19,13 +19,6 @@ alias cp='cp -i -r'
 alias mv='mv -i'
 alias gr='grep --color=auto'
 alias ws='_ wifi-select wlan0'
-# Fav folders
-dataFolder='/mnt/data'
-alias inbox='cd ${dataFolder}/inbox'
-alias book='cd ${dataFolder}/Dropbox/book/'
-alias dev='cd ${dataFolder}/dev'
-alias build='cd ~/.build/'
-alias cw='/srv/http/'
 #Tweak application default running mode
 alias p='packer'
 alias scrot='scrot -q100'

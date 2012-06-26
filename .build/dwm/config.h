@@ -48,7 +48,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[]       = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]         = { "urxvtc", "-e", "zsh", "-c", "tmux", NULL };
+static const char *termcmd[]         = { "urxvtc",  NULL };
 static const char *padcmd[]         = { "urxvtc", "-title", "scratchpad", "-geometry", "54x10+504+12", NULL };
 static const char *soundMute[]      = { "amixer", "set", "Master", "toggle", NULL };
 static const char *soundUp[]        = { "amixer", "set", "Master", "2+", NULL };
@@ -61,14 +61,19 @@ static Key keys[] = {
   { Mod4Mask,                     XK_space,      spawn,      {.v = dmenucmd } },
   { Mod4Mask,                     XK_Return, spawn,          {.v = termcmd } },
   { Mod4Mask,                     XK_p,      spawn,          {.v = padcmd } },
-  { Mod4Mask,                     XK_b,      spawn,          SHCMD("exec google-chrome --proxy-server=\"socks://localhost:9050\"") },
-  {      0,                       XK_Print,  spawn,          SHCMD("exec scrot -q 100 -t 25 '%Y-%m-%d-%H-%M-%S.jpg' -e 'mv $f $m /ntfs-data/inbox/tmp/screenshots'") },
+  { Mod4Mask,                     XK_b,      spawn,          SHCMD("exec google-chrome") },
+  {      0,                       XK_Print,  spawn,          SHCMD("exec scrot -q 100 -t 25 '%Y-%m-%d-%H-%M-%S.jpg' -e 'mv $f $m ~/'") },
   //map media functions for 7818u
   {      0,                       0x1008ff12,spawn,          {.v = soundMute } },
   {      0,                       0x1008ff11,spawn,          {.v = soundDown } },
   {      0,                       0x1008ff13,spawn,          {.v = soundUp } },
   {      0,                       0x1008ff16,spawn,          {.v = soundPrev } },
   {      0,                       0x1008ff17,spawn,          {.v = soundNext } },
+
+  // default media shortcuts
+  { Mod4Mask,                     XK_F6,     spawn,          {.v = soundMute } },
+  { Mod4Mask,                     XK_F7,     spawn,          {.v = soundDown } },
+  { Mod4Mask,                     XK_F8,     spawn,          {.v = soundUp   } },
 
   { MODKEY,                       XK_b,      togglebar,      {0} },
   { Mod1Mask,                     XK_j,      focusstack,     {.i = +1 } },
