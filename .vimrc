@@ -99,7 +99,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.rar,*.tar.*
 set hidden                        " Change buffer - without saving
 " Move to exact place you want
 set relativenumber
-set cursorline
 " Set backspace config
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
