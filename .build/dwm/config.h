@@ -76,7 +76,8 @@ static Key keys[] = {
   { Mod4Mask,                     XK_F8,     spawn,          {.v = soundUp   } },
 
   { MODKEY,                       XK_b,      togglebar,      {0} },
-  { Mod1Mask,                     XK_j,      focusstack,     {.i = +1 } },
+  { Mod1Mask,                     XK_quoteleft,      focusstack,     {.i = +1 } },
+  { Mod1Mask|ShiftMask,                     XK_quoteleft,      focusstack,     {.i = -1 } },
   { Mod1Mask,                     XK_k,      focusstack,     {.i = -1 } },
   { Mod1Mask,                     XK_h,      setmfact,       {.f = -0.05} },
   { Mod1Mask,                     XK_l,      setmfact,       {.f = +0.05} },
