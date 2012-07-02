@@ -22,6 +22,12 @@ call pathogen#infect()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove empty line at the end of page
+function! <SID>TrimEndLines()
+  let save_cursor = getpos(".")
+  :silent! %s#\($\n\s*\)\+\%$##
+  call setpos('.', save_cursor)
+endfunction
 " Remove trailing spaces
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
@@ -89,8 +95,7 @@ set list
 set clipboard=unnamed
 " Speed up vim
 set lazyredraw
-set synmaxcol=128
-set ttyfast
+set synmaxcol=200
 " Slash
 set shellslash                    " Use / instead of \ in Windows
 set wildmenu
@@ -164,6 +169,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto remove when saving
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre * :call <SID>TrimEndLines()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
