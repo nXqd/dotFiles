@@ -19,7 +19,7 @@ syndaemon -t -i 2 &
 #Hide cursor
 unclutter -keystroke &
 #Redshift - change your screen temp to reduce eyestrain
-redshift &
+redshift -c ~/.redshift.conf &
 # Dropbox
 dropboxd &
 #dwm status
