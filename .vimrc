@@ -292,5 +292,3 @@ let g:ctrlp_map = '<leader>f'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " C/AL
 au FileType cal set filetype=cal.vb
-" PHP
-autocmd FileType php map <leader>r !php %
