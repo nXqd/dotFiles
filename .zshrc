@@ -37,7 +37,7 @@ export XMODIFIERS="@im=ibus"
 export GTK_IM_MODULE="ibus"
 export QT_IM_MODULE="ibus"
 # Editor
-export EDITOR="mvim -v"
+export EDITOR="gvim -v"
 # Customized stuffs
 . ~/.zsh/aliases
 . ~/.zsh/functs
