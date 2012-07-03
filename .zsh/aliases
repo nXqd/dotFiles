@@ -25,5 +25,5 @@ alias scrot='scrot -q100'
 alias urxvt='urxvtc&'
 alias gimp='gimp&exit'
 #Editor
-alias v='vim'
+alias e=$EDITOR
 # vim: set ts=2:sw=2:tw=120:
