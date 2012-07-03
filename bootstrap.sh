@@ -20,7 +20,7 @@ walk() {
 }
 
 install() {
-  if [ -L $linkName ]; then
+  if [ ! -L $linkName ]; then
     echo "Remove file or symlink: "$linkName
     rm -rf $linkName
   fi
