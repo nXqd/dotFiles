@@ -91,8 +91,6 @@ set nocompatible
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
-" Use system clipboard by default
-set clipboard=unnamed
 " Speed up vim
 set lazyredraw
 set synmaxcol=200
@@ -292,3 +290,5 @@ let g:ctrlp_map = '<leader>f'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " C/AL
 au FileType cal set filetype=cal.vb
+" PHP
+autocmd FileType php map <leader>r !php %
