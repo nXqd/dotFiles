@@ -42,3 +42,5 @@ export EDITOR="mvim -v"
 . ~/.zsh/aliases
 . ~/.zsh/functs
 . ~/.zsh/configs
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
