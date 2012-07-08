@@ -11,12 +11,19 @@ walk() {
   curDir=$(pwd)
   homeDir=(`cd ~;pwd`)
 
+  echo "initializing submodules"
+  git submodule init
+  git submodule update
+
   for i in ${dotFiles[*]}; do
     target=$curDir"/"$i
     linkName=$homeDir"/"$i
 
     $cmd $target $linkName
   done
+
+  echo "Updating submodules"
+  git submodule foreach git pull origin master --recurse-submodules
 }
 
 install() {
