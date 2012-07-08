@@ -8,7 +8,8 @@ static const char normfgcolor[]     = "#bbbbbb";
 static const char selbordercolor[]  = "#005577";
 static const char selbgcolor[]      = "#005577";
 static const char selfgcolor[]      = "#eeeeee";
-static const unsigned int borderpx  = 1;        /* border pixel of windows */ static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
@@ -58,7 +59,7 @@ static const char *soundPrev[]      = { "ncmpcpp", "next", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
-  { Mod4Mask,                     XK_space,      spawn,      {.v = dmenucmd } },
+  { Mod1Mask,                     XK_space,      spawn,      {.v = dmenucmd } },
   { Mod4Mask,                     XK_Return, spawn,          {.v = termcmd } },
   { Mod4Mask,                     XK_p,      spawn,          {.v = padcmd } },
   { Mod4Mask,                     XK_b,      spawn,          SHCMD("exec google-chrome") },
@@ -120,4 +121,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
