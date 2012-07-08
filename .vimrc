@@ -187,7 +187,7 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+map <leader>g :vimgrep // **/*.*<left><left><left><left><left><left><left><left>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
@@ -249,8 +249,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 " => Cope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Do :help cope if you are unsure what cope is. It's super useful!
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>co :botright cope<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -292,5 +291,3 @@ let g:ctrlp_map = '<leader>f'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " C/AL
 au FileType cal set filetype=cal.vb
-" PHP
-autocmd FileType php map <leader>r !php %
