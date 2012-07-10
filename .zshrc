@@ -37,9 +37,10 @@ export XMODIFIERS="@im=ibus"
 export GTK_IM_MODULE="ibus"
 export QT_IM_MODULE="ibus"
 # Editor
-export EDITOR="vim"
+export EDITOR="mvim -v"
 # Customized stuffs
 . ~/.zsh/aliases
 . ~/.zsh/functs
 . ~/.zsh/configs
 
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
