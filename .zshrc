@@ -31,15 +31,14 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 # PATHS
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/usr/share/pear
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/usr/share/pear:$HOME/.rvm/bin
 # Input method
 export XMODIFIERS="@im=ibus"
 export GTK_IM_MODULE="ibus"
 export QT_IM_MODULE="ibus"
 # Editor
-export EDITOR="vim"
+export EDITOR="gvim -v"
 # Customized stuffs
 . ~/.zsh/aliases
 . ~/.zsh/functs
 . ~/.zsh/configs
-

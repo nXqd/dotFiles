@@ -7,30 +7,37 @@
 walk() {
   cmd=$1
 
-  dotFiles=(`ls -da .* | grep -Pxv '\.git|\.+'`)
+  dotFiles=(`ls -da .* | grep -Pxv '\.git|\.gitmodules|\.gitconfig|\.arch|\.+'`)
   curDir=$(pwd)
   homeDir=(`cd ~;pwd`)
+
+  echo "initializing submodules"
+  git submodule init
+  git submodule update
 
   for i in ${dotFiles[*]}; do
     target=$curDir"/"$i
     linkName=$homeDir"/"$i
 
-    $cmd
+    $cmd $target $linkName
   done
+
+  echo "Updating submodules"
+  git submodule foreach git pull origin master --recurse-submodules
 }
 
 install() {
-  if [ -L $linkName ]; then
-    echo "Remove file or symlink: "$linkName
-    rm -rf $linkName
+  if [ -L $2 ]; then
+    echo "Remove file or symlink: "$2
+    rm -rf $2
   fi
-  ln -s $target $linkName
+  ln -s $1 $2
 }
 
 uninstall() {
-  if [ -L $linkName ]; then
-    echo "Remove file or symlink: "$linkName
-    rm -rf $linkName
+  if [ -L $2 ]; then
+    echo "Remove file or symlink: "$2
+    rm -rf $2
   fi
 }
 
