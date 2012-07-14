@@ -3,7 +3,7 @@
 # zsh shortcuts for ninja
 ##########################
 #Auto open files
-alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}='feh'
+alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}='open'
 alias -s {mpg,mpeg,avi,ogm,ogv,wmv,m4v,mp4,mov,f4v,mkv}='mplayer'
 alias -s {mp3,ogg,wav,flac}='ncmpcpp'
 alias -s {html,com,net,org,gov}='google-chrome'
@@ -11,19 +11,8 @@ alias -s pdf='mupdf'
 alias -s chm='xchm'
 alias -s {rar,zip,7z,tar}='x' #function in .zsh/functs
 alias -s {txt,lua,php,js,css,cal}='vim'
-# Archlinux - pacman family
-alias p='sudo pacman'
-alias pc='sudo pacman -Rsn $(pacman -Qdtq)'
-# Command
-alias cp='cp -i -r'
-alias mv='mv -i'
-alias gr='grep --color=auto'
-alias ws='_ wifi-select wlan0'
-#Tweak application default running mode
-alias p='packer'
-alias scrot='scrot -q100'
-alias urxvt='urxvtc&'
-alias gimp='gimp&exit'
+#app
+alias m=tmuxinator
 #Editor
 alias e=$EDITOR
 # vim: set ts=2:sw=2:tw=120:

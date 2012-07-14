@@ -32,15 +32,12 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 # PATHS
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/usr/share/pear
-# Input method
-export XMODIFIERS="@im=ibus"
-export GTK_IM_MODULE="ibus"
-export QT_IM_MODULE="ibus"
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# LOCALE
+export LC_CTYPE=en_US.UTF-8
 # Editor
 export EDITOR="mvim -v"
 # Customized stuffs
 . ~/.zsh/aliases
 . ~/.zsh/functs
 . ~/.zsh/configs
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
