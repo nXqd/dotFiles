@@ -92,7 +92,6 @@ set nocompatible
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
 " Speed up vim
-set lazyredraw
 set synmaxcol=200
 " Slash
 set shellslash                    " Use / instead of \ in Windows
@@ -135,6 +134,9 @@ set textwidth=120
 set nobackup
 set nowb
 set noswapfile
+" Specify the behavior when switching between buffers
+set switchbuf=usetab
+set stal=2
 " Undo
 set undofile
 if os=="win"
@@ -188,30 +190,22 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 " => Command mode related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>g :vimgrep // **/*.*<left><left><left><left><left><left><left><left>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Map space to / (search) and c-space to ? (backgwards search)
-map <space> /
-map <silent> <leader><cr> :noh<cr>
+nmap <space> /
+map <silent><leader><cr> :noh<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
-
-" Specify the behavior when switching between buffers
-set switchbuf=usetab
-set stal=2
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Statusline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " W to save as root
+nmap <leader>w :w!<cr>
 cnoremap W w !sudo tee % > /dev/null
 " Map copy and paste with system clipboard register
 map <C-y> "+y
@@ -232,7 +226,6 @@ exe 'inoremap' . bracketPrefix . '3 {}<esc>i'
 exe 'inoremap' . bracketPrefix . '4 {<esc>o}<esc>O'
 exe 'inoremap' . bracketPrefix . 'q ""<esc>i'
 exe 'inoremap' . bracketPrefix . 'e ''''<esc>i'
-
 " Map to enter ; end of line
 inoremap <leader>; <esc>A;
 nnoremap <leader>; A;<esc>
