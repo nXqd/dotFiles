@@ -92,6 +92,7 @@ set nocompatible
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
 " Speed up vim
+set lazyredraw
 set synmaxcol=200
 " Slash
 set shellslash                    " Use / instead of \ in Windows
@@ -100,6 +101,7 @@ set wildignorecase
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.rar,*.tar.*
 set hidden                        " Change buffer - without saving
 " Move to exact place you want
+set cursorline
 set relativenumber
 " Set backspace config
 set backspace=eol,start,indent

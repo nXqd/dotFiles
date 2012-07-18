@@ -7,7 +7,7 @@ mkcd () {
 
 # Task timer
 t () {
-  text=$2
+  text=$1
 
   _timer() {
     counter=0

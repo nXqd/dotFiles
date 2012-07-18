@@ -18,7 +18,7 @@
 #upload_rate = 0
 
 # Default directory to save the downloaded torrents.
-directory = /mnt/data/inbox/tors
+directory = ~/inbox/tors
 
 # Default session directory. Make sure you don't run multiple instance
 # of rtorrent using the same session directory. Perhaps using a
@@ -27,7 +27,7 @@ directory = /mnt/data/inbox/tors
 
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
-schedule = watch_directory,5,5,load_start=/mnt/data/inbox/tors/*.torrent
+schedule = watch_directory,5,5,load_start=~/inbox/tors/*.torrent
 #schedule = untied_directory,5,5,stop_untied=
 
 # Close torrents when diskspace is low.
