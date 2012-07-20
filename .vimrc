@@ -2,7 +2,7 @@
 " Modified by nXqd
 " Construct
 "    -> General
-"    -> Colors and Fonts
+"    -> UI
 "    -> Files and backups
 "    -> Text, tab and indent related
 "    -> Visual mode related
@@ -136,6 +136,8 @@ set textwidth=120
 set nobackup
 set nowb
 set noswapfile
+" enable syntax highlighting
+syntax enable
 " Specify the behavior when switching between buffers
 set switchbuf=usetab
 set stal=2
@@ -153,10 +155,8 @@ else
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
+" => UI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" enable syntax highlight
-syntax enable
 " Gvim
 if has("gui_running")
   set guioptions-=m     "remove menu bar
