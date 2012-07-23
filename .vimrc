@@ -91,6 +91,8 @@ set nocompatible
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
+" ack is better than grep
+set grepprg=ack
 " Speed up vim
 set lazyredraw
 set synmaxcol=200
